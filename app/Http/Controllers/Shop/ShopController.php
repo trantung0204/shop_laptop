@@ -26,7 +26,6 @@ class ShopController extends Controller
 			array_unique($arr);
 			$image->link = $arr[0];
 		}	
-		
 		return view('shop.pages.home',compact('products'));
 	}
 	public function listing()

@@ -397,7 +397,9 @@
 
 					$('#header-show-modal h4').text("Ngày "+date[2]+" tháng "+date[1]+" năm "+date[0]);
 
-					$('#receipt_price').text(response.info.sum+" VNĐ");
+					// $('#receipt_price').text(response.info.sum+" VNĐ");
+					$("#receipt_price").autoNumeric('init', {aSign:' VNĐ', pSign:'s' ,mDec: '0'});
+					$("#receipt_price").autoNumeric('set', response.info.sum);
 					var index=1;
 					var qty=0;
 					$('#receipt_show_table tbody').html("");
@@ -405,59 +407,93 @@
 						qty+=item.quantity;
 						var cpu=null;
 						switch(item.cpu) {
-					                case '1':
+					                case 1:
 					                    cpu='Core i3';
 					                    break;
-					                case '2':
+					                case 2:
 					                    cpu='Core i5';
 					                    break;
-					                case '3':
+					                case 3:
 					                    cpu='Core i7';
 					                    break;
-					                case '4':
+					                case 4:
 					                    cpu='Pentium';
 					                    break;
-					                case '5':
+					                case 5:
 					                    cpu='Core M';
 					                    break;
-					                case '6':
+					                case 6:
 					                    cpu='AMD';
 					                    break;
+							}
+						var vga=null;
+						switch(item.vga) {
+							case 1:
+		                        vga='GTX 1030';
+		                        break;
+		                    case 2:
+		                        vga='GTX 1050';
+		                        break;
+		                    case 3:
+		                        vga='GTX 1050ti';
+		                        break;
+		                    case 4:
+		                        vga='GTX 1060';
+		                        break;
+		                    case 5:
+		                        vga='GTX 1070';
+		                        break;
+		                    case 6:
+		                        vga='GTX 1080';
+		                        break;
+		                    
+		                    default:
+		                        vga='On Board';
+		                        break;
 							}
 						$('#receipt_show_table tbody').append(`<tr><td>`+index+`</td>
 							<td>`+item.product_details_id+`</td>
 							<td>`+item.product_code+`</td>
 							<td>`+item.product_name+`</td>
 							<td>`+item.color+`</td>
-							<td>`+item.size+`</td>
+							<td>`+item.size+` inch</td>
 							<td>`+ cpu+`</td>
 							<td>`+item.ram+` GB</td>
-							<td>`+item.vga+`</td>
+							<td>`+vga+`</td>
 							<td>`+item.disk+` GB</td>
 							<td>`+item.resolution+`p</td>
-							<td>`+item.origin_price+` VNĐ</td>
-							<td>`+item.sale_price+` VNĐ</td>
+							<td id="view-record-`+index+`-originPrice">`+item.origin_price+` VNĐ</td>
+							<td id="view-record-`+index+`-salePrice">`+item.sale_price+` VNĐ</td>
 							<td>`+item.quantity+` Chiếc</td>
-							<td>`+item.import_price+` VNĐ</td>
-							<td>`+item.import_price*item.quantity+` VNĐ</td>
+							<td id="view-record-`+index+`-importPrice">`+item.import_price+` VNĐ</td>
+							<td id="view-record-`+index+`-sum">`+item.import_price*item.quantity+` VNĐ</td>
 						</tr>`);
+						$("#view-record-"+index+"-originPrice").autoNumeric('init', {aSign:' đ', pSign:'s' ,mDec: '0'});
+						$("#view-record-"+index+"-salePrice").autoNumeric('init', {aSign:' đ', pSign:'s' ,mDec: '0'});
+						$("#view-record-"+index+"-importPrice").autoNumeric('init', {aSign:' đ', pSign:'s' ,mDec: '0'});
+						$("#view-record-"+index+"-sum").autoNumeric('init', {aSign:' đ', pSign:'s' ,mDec: '0'});
+
+						$("#view-record-"+index+"-originPrice").autoNumeric('set', item.origin_price);
+						$("#view-record-"+index+"-salePrice").autoNumeric('set', item.sale_price);
+						$("#view-record-"+index+"-importPrice").autoNumeric('set', item.import_price);
+						$("#view-record-"+index+"-sum").autoNumeric('set', item.import_price*item.quantity);
 						index++;
 					})
+
 					$('#item_total').text(qty +" Chiếc");
 					index=1; qty=0;
-									// <tr>
-									//   <th>+ (++index) +</th>
-									//   <th>'+item.product_details_id+'</th>
-									//   <th>'+item.product_code+'</th>
-									//   <th>'+item.product_name+'</th>
-									//   <th>'+item.color+'</th>
-									//   <th>'+item.size+'</th>
-									//   <th>'+item.origin_price+'</th>
-									//   <th>'+item.sale_price+'</th>
-									//   <th>'+item.quantity+'</th>
-									//   <th>'+item.import_price+'</th>
-									//   <th>'+item.import_price*item.quantity+'</th>
-									// </tr>');
+
+					$.ajax({
+						type: 'get',
+						url: asset+'admin/import/readMoney/'+response.info.sum.substr(0, response.info.sum.length-3),
+
+						success: function (response) {
+							// $('#receipt_total_write').text(response.data);
+						},
+						error: function (error) {
+							
+						}
+					})
 				},
 				error: function (error) {
 					

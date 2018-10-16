@@ -64,6 +64,7 @@ Route::prefix('admin')->group(function(){
 		Route::get('/importProductDetails/{code}', 'Admin\ImportReceiptController@getDetail')->name('import.importProductDetails');
 		Route::get('/getProOfCate/{id}', 'Admin\ImportReceiptController@getProOfCate')->name('import.getProOfCate');
 		Route::get('import/genCode', 'Admin\ImportReceiptController@generateCode')->name('import.genCode');
+		Route::get('import/readMoney/{money}', 'Admin\ImportReceiptController@convert_number_to_words')->name('import.readMoney');
 
 		Route::middleware('admin.checkSuperAdmin')->group( function ()
 		{

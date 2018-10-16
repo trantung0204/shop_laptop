@@ -327,7 +327,7 @@
                       </tbody>
                       <tfoot>
                           <tr>
-                            <th colspan="10">Tổng số mặt hàng</th>
+                            <th colspan="15">Tổng số mặt hàng</th>
                             <th id="item_total"></th>
                           </tr>
                           <tr>

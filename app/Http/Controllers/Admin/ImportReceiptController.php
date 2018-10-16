@@ -425,7 +425,8 @@ class ImportReceiptController extends Controller
             $string .= implode(' ', $words);
         }
          
-        return $string;
+        // return $string;
+        return response()->json(['data' => $string], 200);
     }
     public function getDetail($code)
     {
