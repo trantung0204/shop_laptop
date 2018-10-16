@@ -1,0 +1,18 @@
+#titleAdmin{
+	width: 100%;
+	font-size: 40px;
+	margin-bottom: 15px;
+	color: #3c8dbc;
+}
+.suaAnh{
+	width: 25%;
+	margin-bottom: 20px;
+}
+.suaAnh2{
+	width: 100px;
+	margin-bottom: 20px;
+}
+#export_button{
+	float: right;
+	margin-right: 94px;
+}
