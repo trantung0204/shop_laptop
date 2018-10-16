@@ -179,4 +179,12 @@ class ShopController extends Controller
 	{
 		return view('shop.pages.login');
 	}
+	public function signupShop()
+	{
+		return view('shop.pages.signup');
+	}
+	public function about()
+	{
+		return view('shop.pages.about');
+	}
 }

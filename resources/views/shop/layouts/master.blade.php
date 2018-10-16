@@ -279,7 +279,7 @@
 							<!-- slogan end --> 						
 							<div class="settings">
 								<!-- currency start -->
-								<div class="currency dropdown text-right">
+								<!-- <div class="currency dropdown text-right">
 									<div class="dropdown-label hidden-sm hidden-xs">Currency:</div>
 									<a class="dropdown-toggle" data-toggle="dropdown"> USD<span class="caret"></span></a>
 									<ul class="dropdown-menu dropdown-menu--xs-full">
@@ -288,10 +288,10 @@
 										<li><a href="#">USD - US Dollar</a></li>
 										<li class="dropdown-menu__close"><a href="#"><span class="icon icon-close"></span>close</a></li>
 									</ul>
-								</div>
+								</div> -->
 								<!-- currency end --> 
 								<!-- language start -->
-								<div class="language dropdown text-right">
+								<!-- <div class="language dropdown text-right">
 									<div class="dropdown-label hidden-sm hidden-xs">Language:</div>
 									<a class="dropdown-toggle" data-toggle="dropdown"> English<span class="caret"></span></a>
 									<ul class="dropdown-menu dropdown-menu--xs-full">
@@ -301,7 +301,7 @@
 										<li><a href="#">Russian</a></li>
 										<li class="dropdown-menu__close"><a href="#"><span class="icon icon-close"></span>close</a></li>
 									</ul>
-								</div>
+								</div> -->
 								<!-- language end --> 
 							</div>
 						</div>
@@ -340,7 +340,7 @@
 								</div>
 								<!-- account menu end -->
 								<!-- icon toggle menu -->
-								<div class="link-inline toggle-menu  visible-mobile-menu-off">
+								<!-- <div class="link-inline toggle-menu  visible-mobile-menu-off">
 									<span class="icon icon-reorder"></span>									
 							          <ul class="dropdown-menu " role="menu">
 							          	<li class='li-col-full'>
@@ -381,7 +381,7 @@
 							              </ul>
 							            </li>
 							          </ul>
-								</div>
+								</div> -->
 								<!-- /icon toggle menu -->
 								<!-- shopping cart start -->
 								<div class="cart link-inline">

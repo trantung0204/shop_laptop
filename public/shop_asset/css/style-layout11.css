@@ -8,6 +8,9 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+.img-center{
+  margin: 0 auto;
+}
 body {
   margin: 0;
 }
@@ -6187,7 +6190,7 @@ body.fullwidth .container,
     padding-right: 15px;
   }
   #header .container:first-child .row {
-    padding-top: 40px;
+    /*padding-top: 40px;*/
   }
   #header .navbar {
     border-radius: 0;

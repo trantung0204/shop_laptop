@@ -13,10 +13,10 @@
 	</li>
 	<li class="dropdown dropdown-mega-menu dropdown-two-col">
 		<span class="dropdown-toggle extra-arrow"></span>
-		<a href="about.html" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">LIÊN HỆ</span></a>
+		<a href="{{ asset('shop/about') }}" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">LIÊN HỆ</span></a>
 	</li>											
 	<li class="dropdown dropdown-mega-menu">
 		<span class="dropdown-toggle extra-arrow"></span>
-		<a href="listing-layout11.html" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">SẢN PHẨM<span class="badge badge--menu badge--color">SALE</span></span></a>
+		<a href="{{ asset('shop/listing') }}" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">SẢN PHẨM<span class="badge badge--menu badge--color">SALE</span></span></a>
 	</li>
 </ul>
