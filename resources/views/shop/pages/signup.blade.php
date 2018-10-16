@@ -7,8 +7,8 @@
 		<meta name="keywords" content="HTML5 Template" />
 		<meta name="description" content="T3 Store - Quality is Our Top Priority">
 		<meta name="author" content="etheme.com">
-		<base href="{{asset('')}}shop_asset/">
 		<link rel="shortcut icon" href="favicon.ico">
+		<base href="{{asset('')}}shop_asset/">
 		<!-- Mobile Specific Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- External Plugins CSS -->
@@ -42,9 +42,7 @@
 	    <div class="back-to-top"><span class="icon-keyboard_arrow_up"></span></div>
 	    <!-- /Back to top -->
 	    <!-- mobile menu -->
-		<div class="hidden">
-			@include('shop.parts.mobile-navbar')
-		</div>			
+		@include('shop.parts.mobile-navbar')		
 	    <!-- /mobile menu -->
 		<!-- HEADER section -->
 		<div class="header-wrapper">
@@ -53,7 +51,7 @@
 					<div class="row">
 						<div class="col-xl-3">
 							<!-- logo start --> 
-							<a href="{{ asset('shop') }}"><img class="logo replace-2x img-responsive" src="images/custom/layout11/logo.png" alt=""/></a> 
+							<a href="index-11.html"><img class="logo replace-2x img-responsive" src="images/custom/layout11/logo.png" alt=""/></a> 
 							<!-- logo end --> 
 						</div>
 						<div class="col-xl-7 col-lg-push-12 text-center">							
@@ -88,6 +86,18 @@
 								</div>	
 						    </div>							
 						</div>
+							
+						</div>
+						<div class="col-sm-8 col-md-8 col-lg-6 col-xl-5 text-right visible-mobile-menu-on">
+							<!-- slogan start -->
+							<div class="slogan"> Chào mừng đến với T3 Store! </div>
+							<!-- slogan end --> 						
+							<div class="settings">
+								<!-- currency start -->
+								<!-- currency end --> 
+								<!-- language start -->
+								<!-- language end --> 
+							</div>
 						</div>
 						<div class="pull-right  col-lg-pull-3 col-md-3  col-xl-2 alignment-extra">
 							<div class="text-right">
@@ -104,14 +114,16 @@
 										</form>
 									</div>
 								</div>
+								<!-- search end -->	
+								<!-- shopping cart start -->
+								@include('shop.parts.shopping-pc')
+								<!-- shopping cart end -->
 								<!-- search end -->			
 								<!-- account menu start -->
+							</div>
 								<!-- account menu end -->
 								<!-- icon toggle menu -->
 								<!-- /icon toggle menu -->
-								<!-- shopping cart start -->
-								@include('shop.parts.shopping-pc')
-								<!-- shopping cart end -->			
 							</div>
 						</div>
 					</div>
@@ -124,7 +136,7 @@
 			<div class="container">
 				<ol class="breadcrumb breadcrumb--ys pull-left">
 					<li class="home-link"><a href="{{ asset('shop') }}" class="icon icon-home"></a></li>										
-					<li class="active">Đăng Nhập</li>
+					<li class="active">Đăng Ký</li>
 				</ol>
 			</div>
 		</div>
@@ -134,48 +146,51 @@
 			<div class="container">				
 				<!-- title -->
 				<div class="title-box">
-					<h1 class="text-center text-uppercase title-under">ĐĂNG NHẬP HOẶC TẠO TÀI KHOẢN</h1>
+					<h1 class="text-center text-uppercase title-under">ĐĂNG KÝ TÀI KHOẢN</h1>
 				</div>
 				<!-- /title -->		
 				<div class="row">
 					<section class="col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xl-offset-2">
-						 <div class="login-form-box">
-						 	 <h3 class="color small">KHÁCH HÀNG MỚI</h3>
-				             <p>Bằng cách tạo tài khoản với cửa hàng chúng tôi, bạn có thể mua hàng nhanh hơn, lưu trữ nhiều địa chỉ giao hàng, xem và theo dõi đơn hàng của bạn trong tài khoản</p>
-				            <br>
-				            <button class="btn btn--ys btn--xl" onclick="location.href='{{ asset('shop/signupShop') }}';"><span class="icon icon-person_add"></span>Tạo một tài khoản</button>
-						 </div>
+						<div>
+							<img src="http://www.listopsis.pt/media/1404/device-mesh.png?mode=pad&width=1400&rnd=131315477300000000" alt="" width="100%">
+						</div>
 					</section>
 					<div class="divider divider--md visible-sm visible-xs"></div>
-					<section class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+					<section class="col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xl-offset-2">
 						<div class="login-form-box">
-							<h3 class="color small">ĐĂNG NHẬP</h3>
-							<p>
-								Nếu bạn có tài khoản với chúng tôi, vui lòng đăng nhập.
-							</p>
-				              <form action="#" id="form-returning">
-				                <div class="form-group">
-				                  <label for="email">Email <sup>*</sup></label>
-				                  <input type="email" class="form-control" id="email">
-				                </div>
-				                <div class="form-group">
-				                  <label for="password">Mật khẩu <sup>*</sup></label>
-				                  <input type="password" class="form-control" id="password">
-				                </div>
-				                <div class="row">
-				                	<div class="col-xs-12 col-sm-6 col-md-6">
-				                		<button type="submit" class="btn btn--ys btn-top btn--xl" onclick="document.getElementById('form-returning').submit();"><span class="icon icon-vpn_key"></span>ĐĂNG NHẬP</button>			               			
-				                	</div>
-				                	<div class="divider divider--md visible-xs"></div>
-				                	<div class="col-xs-12 col-sm-6 col-md-6">
-				                		<div class="pull-right note btn-top">* Bắt buộc</div>
-				                	</div>
-				                </div>			               			                
-				                <p class="btn-top">
-		               				<a class="link-color" href="#">Quên mật khẩu?</a>
-		               			</p>
-				              </form>
+							<h3 class="color small">ĐĂNG KÝ</h3>
+							<div class="form-group">
+								<label for="name">Tên <sup>*</sup></label>
+								<input type="text" class="form-control" id="name">
+							</div>
+							<div class="form-group">
+								<label for="name">Họ <sup>*</sup></label>
+								<input type="text" class="form-control" id="name">
+							</div>
+							<div class="form-group">
+								<label for="email">Email <sup>*</sup></label>
+								<input type="email" class="form-control" id="email">
+							</div>
+							<div class="form-group">
+								<label for="password">Mật khẩu <sup>*</sup></label>
+								<input type="password" class="form-control" id="password">
+							</div>
+							<div class="form-group">
+								<label for="repassword">Nhập lại mật khẩu <sup>*</sup></label>
+								<input type="password" class="form-control" id="repassword">
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-xs-12 col-sm-6 col-md-6">
+									<button class="btn btn--ys btn--xl" onclick="location.href='#';"><span class="icon icon-person_add"></span>ĐĂNG KÝ</button>			               			
+								</div>
+								<div class="divider divider--md visible-xs"></div>
+								<div class="col-xs-12 col-sm-6 col-md-6">
+									<div class="pull-right note btn-top">* Bắt buộc</div>
+								</div>
+							</div>	
 						</div>
+						
 					</section>
 				</div>						
 			</div>
