@@ -92,7 +92,7 @@ $(function () {
 				// console.log("dfdf");
 				$('#add').modal('hide');
 				toastr.success('Success!');
-				productTable.ajax.reload();
+				productTable.ajax.reload(null,false)();
 				$('#add_name').val(""),
 				$('#add_description').val(""),
 				$('#editor_add_content').val(""),
@@ -129,7 +129,7 @@ $(function () {
 				//console.log(response);
 				$('#edit').modal('hide');
 				
-				productTable.ajax.reload();
+				productTable.ajax.reload(null,false)();
 				//$('#product-price-'+id).text(response.data.price+" $");
 				toastr.success('Đã lưu thay đổi');
 				//toastr.success('Thành công!');
@@ -262,7 +262,7 @@ $(function () {
 					success: function (response) {
 						//console.log(response);
 						toastr.error('Đã xóa sản phẩm');
-						productTable.ajax.reload();
+						productTable.ajax.reload(null,false)();
 					},
 					error: function (error) {
 						
@@ -283,7 +283,7 @@ $(function () {
 	// 		url: url,
 
 	// 		success: function (response) {
-	// 			productDetailTable.ajax.reload();
+	// 			productDetailTable.ajax.reload(null,false)();
 	// 		},
 	// 		error: function (error) {
 	// 		}
@@ -308,7 +308,7 @@ $(function () {
 				resolution: $('#add_resolution').val(),
 			},	
 			success: function (response) {
-				productDetailTable.ajax.reload();
+				productDetailTable.ajax.reload(null,false)();
 				if(response.noti){
 					toastr.error(response.noti);
 				}
@@ -317,8 +317,8 @@ $(function () {
 			}
 		})
 	})
-	$(document).on('click','.btn-del-detail',function () {
-		
+	$(document).on('click','.btn-del-detail',function (e) {
+		e.stopPropagation();
         swal({
 			  title: "Are you sure?",
 			  text: "Once deleted, you will not be able to recover this category!",
@@ -338,7 +338,7 @@ $(function () {
 						url: url,
 
 						success: function (response) {
-							productDetailTable.ajax.reload();
+							productDetailTable.ajax.reload(null,false)();
 						},
 						error: function (error) {
 						}
@@ -454,7 +454,7 @@ $(function () {
 					error: function (error) {
 					}
 				})
-				productTable.ajax.reload();
+				productTable.ajax.reload(null,false)();
 			},
 			error: function (error) {
 				//500
@@ -477,7 +477,7 @@ $(function () {
 			type: 'get',
 			url: url,	
 			success: function (response) {
-				//productDetailTable.ajax.reload();
+				//productDetailTable.ajax.reload(null,false)();
 				$.ajax({
 					type: 'get',
 					url: urlImage,
@@ -495,7 +495,7 @@ $(function () {
 					error: function (error) {
 					}
 				})
-				productTable.ajax.reload();
+				productTable.ajax.reload(null,false)();
 			},
 			error: function (error) {
 			}

@@ -267,7 +267,7 @@ class ProductController extends Controller
     }
     public function addDetail(Request $request)
     {
-        $details = DB::table('product_details')->where('product_code', $request->product_code)->where('color_id', $request->color_id)->where('size_id', $request->size_id)->first();
+        $details = DB::table('product_details')->where('product_code', $request->product_code)->where('color_id', $request->color_id)->where('size_id', $request->size_id)->where('cpu', $request->cpu)->where('ram', $request->ram)->where('vga', $request->vga)->where('disk', $request->disk)->where('resolution', $request->resolution)->first();
 
         //return response()->json(['data' => $details], 200);
 
