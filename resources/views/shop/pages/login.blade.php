@@ -92,7 +92,7 @@
 											</a>
 											<div class="dropdown-menu dropdown-menu--xs-full slide-from-top" role="menu">
 												<div class="container">
-													<div class="cart__top">(CÁC) MỤC ĐƯỢC THÊM GẦN ĐÂY</div>
+													<div class="cart__top">(CÁC) MỤC ĐƯỢC THÊM GẦN </div>
 													<a href="#" class="icon icon-close cart__close"><span>ĐÓNG</span></a>
 													<ul>
 														<li class="cart__item">
