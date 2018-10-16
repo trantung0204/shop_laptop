@@ -76,7 +76,7 @@
 												</a>
 											</div>
 										</div>
-										<!-- //end Mobile menu Button -->
+										<!-- //end Mobile menu  -->
 										@include('shop.parts.navbar')
 									</div>
 										</nav>
