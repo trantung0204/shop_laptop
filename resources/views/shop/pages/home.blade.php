@@ -122,38 +122,63 @@
 					<div class="col-xs-12 col-sm-12 col-md-6">
 						<!-- banner-slider -->
 						<div class="banner-slider banner-slider-button">
-							<div>
-								<a href="listing-layout11.html" class="banner zoom-in font-size-responsive">
-									<span class="figure">
-										<img src="images/custom/layout11/banner-04.jpg" alt=""/>
-										<span class="figcaption">
-											<span class="btn-right-bottom">
-												<span class="btn btn--ys btn--l btn--bg-yellow">Mua ngay!</span>
+							@if (isset($slides))
+								@foreach ($slides as $slide)
+									<div>
+										<a href="listing-layout11.html" data-id="{{$slide->id}}" class="banner zoom-in font-size-responsive">
+											<span class="figure">
+												@php
+													$src=$slide->images[0]->link;
+													$src=str_replace('public',asset('storage'),$src);
+												@endphp
+												<img src="{{$src}}" alt=""/>
+												<span class="figcaption">
+													<span class="btn-right-bottom">
+														<span class="btn btn--ys btn--l btn--bg-yellow" data-id='{{$slide->id}}'>Mua ngay!</span>
+													</span>
+													<span class="block-left-bottom">
+														<span class="block font-size70 color-blue-light custom-font font-bold">{{$slide->brand_name}}</span>
+														<span class="block font-size30 text-dark text-uppercase font-light">{{$slide->name}}</span>
+													</span>
+												</span>
 											</span>
-											<span class="block-left-bottom">
-												<span class="block font-size70 color-blue-light custom-font font-bold">Dell</span>
-												<span class="block font-size30 text-dark text-uppercase font-light">Cấu hình khủng</span>
+										</a>
+									</div>
+								@endforeach
+							@else
+								<div>
+									<a href="listing-layout11.html" class="banner zoom-in font-size-responsive">
+										<span class="figure">
+											<img src="images/custom/layout11/banner-04.jpg" alt=""/>
+											<span class="figcaption">
+												<span class="btn-right-bottom">
+													<span class="btn btn--ys btn--l btn--bg-yellow">Mua ngay!</span>
+												</span>
+												<span class="block-left-bottom">
+													<span class="block font-size70 color-blue-light custom-font font-bold">Dell</span>
+													<span class="block font-size30 text-dark text-uppercase font-light">Cấu hình khủng</span>
+												</span>
 											</span>
 										</span>
-									</span>
-								</a>
-							</div>
-							<div>
-								<a href="listing-layout11.html" class="banner zoom-in font-size-responsive">
-									<span class="figure">
-										<img src="images/custom/layout11/banner-05.jpg" alt=""/>
-										<span class="figcaption">
-											<span class="btn-right-bottom">
-												<span class="btn btn--ys btn--l btn--bg-yellow">Mua ngay!</span>
-											</span>
-											<span class="block-left-bottom">
-												<span class="block font-size70 custom-font font-bold">Asus</span>
-												<span class="block font-size30 text-uppercase font-light">Máy tính văn phòng</span>
+									</a>
+								</div>
+								<div>
+									<a href="listing-layout11.html" class="banner zoom-in font-size-responsive">
+										<span class="figure">
+											<img src="images/custom/layout11/banner-05.jpg" alt=""/>
+											<span class="figcaption">
+												<span class="btn-right-bottom">
+													<span class="btn btn--ys btn--l btn--bg-yellow">Mua ngay!</span>
+												</span>
+												<span class="block-left-bottom">
+													<span class="block font-size70 custom-font font-bold">Asus</span>
+													<span class="block font-size30 text-uppercase font-light">Máy tính văn phòng</span>
+												</span>
 											</span>
 										</span>
-									</span>
-								</a>
-							</div>
+									</a>
+								</div>
+							@endif
 						</div>
 						<!-- /banner-slider -->
 					</div>
@@ -325,232 +350,285 @@
 					<!-- /title --> 
 					<!-- carousel -->
 					<div class="carousel-products row" id="carouselFeatured">
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="product-layout11.html"> <img src="images/custom/layout11/products/product-01.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Xem ngay</b> </a> 
-										<!-- /quick-view --> 
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="product-layout11.html">Tên sản phẩm</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">
-										150.000 VNĐ
-										<span class="price-box__old">200.000 VNĐ</span>
-									</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
-											<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem ngay</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào danh sách yêu thích</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
-											</ul>
+						@if (isset($products))
+							@foreach ($products as $product)
+								<div class="col-lg-3">
+									<!-- product -->
+									<div class="product">
+										<div class="product__inside">
+											<!-- product image -->
+											<div class="product__inside__image">
+												<a href="product-layout11.html"> <img src="@php
+														$src=$product->link;
+														$src=str_replace('public',asset('storage'),$src);
+													@endphp
+													{{$src}}" alt=""> </a> 
+												<!-- quick-view --> 
+												<a href="#" class="quick-view"><b><span class="icon icon-visibility"></span> Xem ngay</b> </a> 
+												<!-- /quick-view --> 
+											</div>
+											<!-- /product image --> 											
+											<!-- product name -->
+											<div class="product__inside__name">
+												<h2><a href="product-layout11.html">{{$product->name}}</a></h2>
+											</div>
+											<!-- /product name --> 
+											<!-- product price -->
+											<div class="product__inside__price price-box">
+												<span class="product_price">{{$product->sale_price}}</span>
+												<span class="price-box__old product_price">{{$product->origin_price}}</span>
+											</div>
+											<!-- /product price --> 
+											<div class="product__inside__hover">
+												<!-- product info -->
+												<div class="product__inside__info">
+													<div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
+													<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
+													<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
+													<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem ngay</a> </div>
+													<ul class="product__inside__info__link hidden-xs">
+														<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào danh sách yêu thích</span></a></li>
+														<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
+													</ul>
+												</div>
+												<!-- /product info --> 
+												<!-- product rating -->
+												<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+												<!-- /product rating --> 
+											</div>
 										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
+									</div>
+									<!-- /product --> 
+								</div>
+							@endforeach
+						@else
+							<div class="col-lg-3">
+								<!-- product -->
+								<div class="product">
+									<div class="product__inside">
+										<!-- product image -->
+										<div class="product__inside__image">
+											<a href="product-layout11.html"> <img src="images/custom/layout11/products/product-01.jpg" alt=""> </a> 
+											<!-- quick-view --> 
+											<a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Xem ngay</b> </a> 
+											<!-- /quick-view --> 
+										</div>
+										<!-- /product image --> 											
+										<!-- product name -->
+										<div class="product__inside__name">
+											<h2><a href="product-layout11.html">Tên sản phẩm</a></h2>
+										</div>
+										<!-- /product name --> 
+										<!-- product price -->
+										<div class="product__inside__price price-box">
+											150.000 VNĐ
+											<span class="price-box__old">200.000 VNĐ</span>
+										</div>
+										<!-- /product price --> 
+										<div class="product__inside__hover">
+											<!-- product info -->
+											<div class="product__inside__info">
+												<div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
+												<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
+												<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
+												<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem ngay</a> </div>
+												<ul class="product__inside__info__link hidden-xs">
+													<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào danh sách yêu thích</span></a></li>
+													<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
+												</ul>
+											</div>
+											<!-- /product info --> 
+											<!-- product rating -->
+											<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+											<!-- /product rating --> 
+										</div>
 									</div>
 								</div>
+								<!-- /product --> 
 							</div>
-							<!-- /product --> 
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="product-layout11.html"> <img src="images/custom/layout11/products/product-01.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Xem ngay</b> </a> 
-										<!-- /quick-view --> 
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="product-layout11.html">Tên sản phẩm</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">
-										150.000 VNĐ
-										<span class="price-box__old">200.000 VNĐ</span>
-									</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
-											<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem ngay</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào danh sách yêu thích</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
-											</ul>
+							<div class="col-lg-3">
+								<!-- product -->
+								<div class="product">
+									<div class="product__inside">
+										<!-- product image -->
+										<div class="product__inside__image">
+											<a href="product-layout11.html"> <img src="images/custom/layout11/products/product-01.jpg" alt=""> </a> 
+											<!-- quick-view --> 
+											<a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Xem ngay</b> </a> 
+											<!-- /quick-view --> 
 										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
+										<!-- /product image --> 											
+										<!-- product name -->
+										<div class="product__inside__name">
+											<h2><a href="product-layout11.html">Tên sản phẩm</a></h2>
+										</div>
+										<!-- /product name --> 
+										<!-- product price -->
+										<div class="product__inside__price price-box">
+											150.000 VNĐ
+											<span class="price-box__old">200.000 VNĐ</span>
+										</div>
+										<!-- /product price --> 
+										<div class="product__inside__hover">
+											<!-- product info -->
+											<div class="product__inside__info">
+												<div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
+												<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
+												<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
+												<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem ngay</a> </div>
+												<ul class="product__inside__info__link hidden-xs">
+													<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào danh sách yêu thích</span></a></li>
+													<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
+												</ul>
+											</div>
+											<!-- /product info --> 
+											<!-- product rating -->
+											<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+											<!-- /product rating --> 
+										</div>
 									</div>
 								</div>
+								<!-- /product --> 
 							</div>
-							<!-- /product --> 
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="product-layout11.html"> <img src="images/custom/layout11/products/product-01.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Xem ngay</b> </a> 
-										<!-- /quick-view --> 
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="product-layout11.html">Tên sản phẩm</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">
-										150.000 VNĐ
-										<span class="price-box__old">200.000 VNĐ</span>
-									</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
-											<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem ngay</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào danh sách yêu thích</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
-											</ul>
+							<div class="col-lg-3">
+								<!-- product -->
+								<div class="product">
+									<div class="product__inside">
+										<!-- product image -->
+										<div class="product__inside__image">
+											<a href="product-layout11.html"> <img src="images/custom/layout11/products/product-01.jpg" alt=""> </a> 
+											<!-- quick-view --> 
+											<a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Xem ngay</b> </a> 
+											<!-- /quick-view --> 
 										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
+										<!-- /product image --> 											
+										<!-- product name -->
+										<div class="product__inside__name">
+											<h2><a href="product-layout11.html">Tên sản phẩm</a></h2>
+										</div>
+										<!-- /product name --> 
+										<!-- product price -->
+										<div class="product__inside__price price-box">
+											150.000 VNĐ
+											<span class="price-box__old">200.000 VNĐ</span>
+										</div>
+										<!-- /product price --> 
+										<div class="product__inside__hover">
+											<!-- product info -->
+											<div class="product__inside__info">
+												<div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
+												<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
+												<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
+												<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem ngay</a> </div>
+												<ul class="product__inside__info__link hidden-xs">
+													<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào danh sách yêu thích</span></a></li>
+													<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
+												</ul>
+											</div>
+											<!-- /product info --> 
+											<!-- product rating -->
+											<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+											<!-- /product rating --> 
+										</div>
 									</div>
 								</div>
+								<!-- /product --> 
 							</div>
-							<!-- /product --> 
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="product-layout11.html"> <img src="images/custom/layout11/products/product-01.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Xem ngay</b> </a> 
-										<!-- /quick-view --> 
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="product-layout11.html">Tên sản phẩm</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">
-										150.000 VNĐ
-										<span class="price-box__old">200.000 VNĐ</span>
-									</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
-											<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem ngay</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào danh sách yêu thích</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
-											</ul>
+							<div class="col-lg-3">
+								<!-- product -->
+								<div class="product">
+									<div class="product__inside">
+										<!-- product image -->
+										<div class="product__inside__image">
+											<a href="product-layout11.html"> <img src="images/custom/layout11/products/product-01.jpg" alt=""> </a> 
+											<!-- quick-view --> 
+											<a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Xem ngay</b> </a> 
+											<!-- /quick-view --> 
 										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
+										<!-- /product image --> 											
+										<!-- product name -->
+										<div class="product__inside__name">
+											<h2><a href="product-layout11.html">Tên sản phẩm</a></h2>
+										</div>
+										<!-- /product name --> 
+										<!-- product price -->
+										<div class="product__inside__price price-box">
+											150.000 VNĐ
+											<span class="price-box__old">200.000 VNĐ</span>
+										</div>
+										<!-- /product price --> 
+										<div class="product__inside__hover">
+											<!-- product info -->
+											<div class="product__inside__info">
+												<div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
+												<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
+												<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
+												<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem ngay</a> </div>
+												<ul class="product__inside__info__link hidden-xs">
+													<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào danh sách yêu thích</span></a></li>
+													<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
+												</ul>
+											</div>
+											<!-- /product info --> 
+											<!-- product rating -->
+											<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+											<!-- /product rating --> 
+										</div>
 									</div>
 								</div>
+								<!-- /product --> 
 							</div>
-							<!-- /product --> 
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product sold-out">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="product-layout11.html"> <img src="images/custom/layout11/products/product-04.jpg" alt=""> </a> 
-										<!-- label sold-out -->
-										<div class="product__label--sold-out"> <span>Hết<br>
-											Hàng</span> 
+							<div class="col-lg-3">
+								<!-- product -->
+								<div class="product sold-out">
+									<div class="product__inside">
+										<!-- product image -->
+										<div class="product__inside__image">
+											<a href="product-layout11.html"> <img src="images/custom/layout11/products/product-04.jpg" alt=""> </a> 
+											<!-- label sold-out -->
+											<div class="product__label--sold-out"> <span>Hết<br>
+												Hàng</span> 
+											</div>
+											<!-- /label sold-out --> 
 										</div>
-										<!-- /label sold-out --> 
-									</div>
-									<!-- /product image --> 
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="product-layout11.html">Tên sản phẩm</a></h2>
-									</div>
-									<!-- /product name -->                 <!-- product description --> 
-									<!-- visible only in row-view mode -->
-									<div class="product__inside__description row-mode-visible"> Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </div>
-									<!-- /product description -->                 <!-- product price -->
-									<div class="product__inside__price price-box">$133.00</div>
-									<!-- /product price -->                 <!-- product review --> 
-									<!-- visible only in row-view mode -->
-									<div class="product__inside__review row-mode-visible">
-										<div class="rating row-mode-visible"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<a href="#">1 Review(s)</a> <a href="#">Add Your Review</a> 
-									</div>
-									<!-- /product review --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-											<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Add to wishlist</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Add to compare</span></a></li>
-											</ul>
+										<!-- /product image --> 
+										<!-- product name -->
+										<div class="product__inside__name">
+											<h2><a href="product-layout11.html">Tên sản phẩm</a></h2>
 										</div>
-										<!-- /product info --> <!-- product rating -->
-										<div class="rating row-mode-hide"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
+										<!-- /product name -->                 <!-- product description --> 
+										<!-- visible only in row-view mode -->
+										<div class="product__inside__description row-mode-visible"> Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </div>
+										<!-- /product description -->                 <!-- product price -->
+										<div class="product__inside__price price-box">$133.00</div>
+										<!-- /product price -->                 <!-- product review --> 
+										<!-- visible only in row-view mode -->
+										<div class="product__inside__review row-mode-visible">
+											<div class="rating row-mode-visible"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+											<a href="#">1 Review(s)</a> <a href="#">Add Your Review</a> 
+										</div>
+										<!-- /product review --> 
+										<div class="product__inside__hover">
+											<!-- product info -->
+											<div class="product__inside__info">
+												<div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
+												<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
+												<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
+												<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
+												<ul class="product__inside__info__link hidden-xs">
+													<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Add to wishlist</span></a></li>
+													<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Add to compare</span></a></li>
+												</ul>
+											</div>
+											<!-- /product info --> <!-- product rating -->
+											<div class="rating row-mode-hide"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+											<!-- /product rating --> 
+										</div>
 									</div>
 								</div>
+								<!-- /product -->
 							</div>
-							<!-- /product -->
-						</div>
+						@endif
 					</div>
 					
 					<!-- /carousel --> 
@@ -787,7 +865,7 @@
 		<!-- /modalLoginForm-->
 
       <!-- Modal (quickViewModal) -->		
-		<div class="modal  modal--bg fade"  id="quickViewModal">
+		{{-- <div class="modal  modal--bg fade"  id="quickViewModal">
 		  <div class="modal-dialog white-modal">
 		    <div class="modal-content container">
 		    	<div class="modal-header">
@@ -858,7 +936,7 @@
 		    	<!-- / -->
 		    </div>
 		  </div>
-		</div>
+		</div> --}}
 		<!-- / Modal (quickViewModal) -->
 		<!-- Modal (newsletter) -->		
 		<div class="modal  modal--bg fade"  id="newsletterModal" data-pause=2000>
@@ -918,6 +996,11 @@
 		<script src="external/colorbox/jquery.colorbox-min.js"></script> 		
 		<!-- Custom --> 
 		<script src="js/custom.js"></script>
-		<script src="js/js-index-11.js"></script>					
+		<script src="js/js-index-11.js"></script>	
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>					
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
+		<script src="{{ asset('js/autoNumeric-min.js') }}"></script>
+		<script src="{{ asset('shop_asset/') }}/ajax/ajax.js"></script> 	
 	</body>
 </html>

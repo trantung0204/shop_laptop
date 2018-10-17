@@ -21,7 +21,7 @@ Route::prefix('shop')->group(function(){
 	Route::get('modalDetail/{id}','Shop\ShopController@modalDetail')->name('shop.modalDetail');
 	Route::post('changeColor', 'Shop\ShopController@changeColor')->name('shop.changeColor');
 	Route::get('listing/','Shop\ShopController@listing')->name('shop.listing');
-	Route::get('productShop','Shop\ShopController@productShop')->name('shop.productShop');
+	Route::get('productShop/{slug}','Shop\ShopController@productShop')->name('shop.productShop');
 	Route::get('loginShop','Shop\ShopController@loginShop')->name('shop.loginShop');
 	Route::post('changeColorDetail', 'Shop\ShopController@changeColorDetail')->name('shop.changeColorDetail');
 	Route::get('signupShop','Shop\ShopController@signupShop')->name('shop.signupShop');
