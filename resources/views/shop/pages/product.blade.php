@@ -1,4 +1,3 @@
-      <meta name="keywords" content="HTML5 Template" />
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -9,9 +8,9 @@
       <meta name="description" content="T3 Store - Quality is Our Top Priority">
       <meta name="author" content="etheme.com">
       <link rel="shortcut icon" href="favicon.ico">
+      <base href="{{asset('')}}shop_asset/">
       <!-- Mobile Specific Metas -->
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <base href="{{asset('')}}shop_asset/">
       <!-- External Plugins CSS -->
       <link rel="stylesheet" href="external/slick/slick.css">
       <link rel="stylesheet" href="external/slick/slick-theme.css">
@@ -53,7 +52,7 @@
                <div class="row">
                   <div class="col-xl-3">
                      <!-- logo start --> 
-                     <a href="{{ asset('shop') }}"><img class="logo replace-2x img-responsive" src="images/custom/layout11/logo.png" alt=""/></a> 
+                     <a href="index-11.html"><img class="logo replace-2x img-responsive" src="images/custom/layout11/logo.png" alt=""/></a> 
                      <!-- logo end --> 
                   </div>
                   <div class="col-xl-7 col-lg-push-12 text-center">                    
@@ -83,112 +82,10 @@
                            </div>
                            <!-- /navigation end -->
                            <!-- shopping cart start -->
-                           <div class="pull-right col-stuck-cart text-right">                      
-                              <div class="cart link-inline">
-                              <div class="dropdown text-right">
-                                 <a class="dropdown-toggle">
-                                 <span class="icon icon-shopping_basket"></span>
-                                 <span class="badge badge--cart">2</span>
-                                 </a>
-                                 <div class="dropdown-menu dropdown-menu--xs-full slide-from-top" role="menu">
-                                    <div class="container">
-                                       <div class="cart__top">(CÁC) MỤC ĐƯỢC THÊM GẦN ĐÂY</div>
-                                       <a href="#" class="icon icon-close cart__close"><span>ĐÓNG</span></a>
-                                       <ul>
-                                          <li class="cart__item">
-                                             <div class="cart__item__image pull-left"><a href="#"><img src="images/product/product-1.jpg" alt=""/></a></div>
-                                             <div class="cart__item__control">
-                                                <div class="cart__item__delete"><a href="#" class="icon icon-delete"><span>Xoá</span></a></div>
-                                                <div class="cart__item__edit"><a href="#" class="icon icon-edit"><span>Sửa</span></a></div>
-                                             </div>
-                                             <div class="cart__item__info">
-                                                <div class="cart__item__info__title">
-                                                   <h2><a href="#">Tên sản phẩm</a></h2>
-                                                </div>
-                                                <div class="cart__item__info__price"><span class="info-label">Giá:</span><span>1.000.000 VNĐ</span></div>
-                                                <div class="cart__item__info__qty"><span class="info-label">Số lượng:</span><input type="text" class="input--ys" value='1' /></div>
-                                                <div class="cart__item__info__details">
-                                                   <div class='multitooltip'>
-                                                      <a href="#">Chi tiết</a>
-                                                      <div class="tip on-bottom">
-                                                         <span><strong>Màu sắc:</strong> Purple</span>
-                                                         <span><strong>Số lượng:</strong> 200</span>
-                                                         <span><strong>Hình ảnh:</strong> No</span>
-                                                         <span><strong>Kích cỡ:</strong> 4"x3.5"</span>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </li>
-                                          <li class="cart__item">
-                                             <div class="cart__item__image pull-left"><a href="#"><img src="images/product/product-1.jpg" alt=""/></a></div>
-                                             <div class="cart__item__control">
-                                                <div class="cart__item__delete"><a href="#" class="icon icon-delete"><span>Xoá</span></a></div>
-                                                <div class="cart__item__edit"><a href="#" class="icon icon-edit"><span>Sửa</span></a></div>
-                                             </div>
-                                             <div class="cart__item__info">
-                                                <div class="cart__item__info__title">
-                                                   <h2><a href="#">Tên sản phẩm</a></h2>
-                                                </div>
-                                                <div class="cart__item__info__price"><span class="info-label">Giá:</span><span>1.000.000 VNĐ</span></div>
-                                                <div class="cart__item__info__qty"><span class="info-label">Số lượng:</span><input type="text" class="input--ys" value='1' /></div>
-                                                <div class="cart__item__info__details">
-                                                   <div class='multitooltip'>
-                                                      <a href="#">Chi tiết</a>
-                                                      <div class="tip on-bottom">
-                                                         <span><strong>Màu sắc:</strong> Purple</span>
-                                                         <span><strong>Số lượng:</strong> 200</span>
-                                                         <span><strong>Hình ảnh:</strong> No</span>
-                                                         <span><strong>Kích cỡ:</strong> 4"x3.5"</span>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </li>
-                                       </ul>
-                                       <div class="cart__bottom">
-                                          <div class="cart__total">Tổng giỏ hàng: <span> 2.000.000 VNĐ</span></div>
-                                          <button class="btn btn--ys btn-checkout">Kiểm Tra <span class="icon icon--flippedX icon-reply"></span></button>
-                                          <a href="#" class="btn btn--ys"><span class="icon icon-shopping_basket"></span> Xem Giỏ Hàng</a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <!-- shopping cart end --> 
-                        </div>   
+                           @include('shop.parts.shopping-mobile')
                       </div>                    
                   </div>
                      
-                  </div>
-                  <div class="col-sm-8 col-md-8 col-lg-6 col-xl-5 text-right visible-mobile-menu-on">
-                     <!-- slogan start -->
-                     <div class="slogan"> Chào mừng đến với T3 Store! </div>
-                     <!-- slogan end -->                 
-                     <div class="settings">
-                        <!-- currency start -->
-                        <div class="currency dropdown text-right">
-                           <div class="dropdown-label hidden-sm hidden-xs">TIỀN TỆ:</div>
-                           <a class="dropdown-toggle" data-toggle="dropdown"> USD<span class="caret"></span></a>
-                           <ul class="dropdown-menu dropdown-menu--xs-full">
-                              <li><a href="#">VNĐ - Việt Nam Đồng</a></li>
-                              <li><a href="#">USD - US Dollar</a></li>
-                              <li class="dropdown-menu__close"><a href="#"><span class="icon icon-close"></span>Đóng</a></li>
-                           </ul>
-                        </div>
-                        <!-- currency end --> 
-                        <!-- language start -->
-                        <div class="language dropdown text-right">
-                           <div class="dropdown-label hidden-sm hidden-xs">Ngôn Ngữ:</div>
-                           <a class="dropdown-toggle" data-toggle="dropdown"> Tiếng Việt<span class="caret"></span></a>
-                           <ul class="dropdown-menu dropdown-menu--xs-full">
-                              <li><a href="#">Tiếng Việt</a></li>
-                              <li><a href="#">English</a></li>
-                              <li class="dropdown-menu__close"><a href="#"><span class="icon icon-close"></span>Đóng</a></li>
-                           </ul>
-                        </div>
-                        <!-- language end --> 
-                     </div>
                   </div>
                   <div class="pull-right  col-lg-pull-3 col-md-3  col-xl-2 alignment-extra">
                      <div class="text-right">
@@ -207,128 +104,11 @@
                         </div>
                         <!-- search end -->        
                         <!-- account menu start -->
-                        <div class="account link-inline hidden mobile-menu-on">
-                           <div class="dropdown text-right">
-                              <a class="dropdown-toggle" data-toggle="dropdown">
-                              <span class="icon icon-person "></span>
-                              </a>
-                              <ul class="dropdown-menu dropdown-menu--xs-full">
-                                 <li><a href="login_form.html"><span class="icon icon-person"></span>Tài Khoản Của Tôi</a></li>
-                                 <li><a href="wishlist.html"><span class="icon icon-favorite_border"></span>Danh Sách Yêu Thích</a></li>
-                                 <li><a href="compare.html"><span class="icon icon-sort"></span>So Sánh</a></li>
-                                 <li><a href="checkout-step.html"><span class="icon icon-done_all"></span>Kiểm Tra</a></li>
-                                 <li><a href="#"  data-toggle="modal" data-target="#modalLoginForm"><span class="icon icon-lock"></span>Đăng Nhập</a></li>
-                                 <li><a href="login_form.html"><span class="icon icon-person_add"></span>Tạo Tài Khoản</a></li>
-                                 <li class="dropdown-menu__close"><a href="#"><span class="icon icon-close"></span>Đóng</a></li>
-                              </ul>
-                           </div>
-                        </div>
                         <!-- account menu end -->
                         <!-- icon toggle menu -->
-                        <div class="link-inline toggle-menu  visible-mobile-menu-off">
-                           <span class="icon icon-reorder"></span>                           
-                               <ul class="dropdown-menu " role="menu">
-                                 <li class='li-col-full'>
-                                    <span class="close icon-clear pull-right" data-dismiss="modal"></span>
-                                 <em class="color main-font">Chào mừng đến với website</em>
-                                 </li>
-                                 <li class='li-col list-user-menu'>                           
-                                <h4 class="megamenu__subtitle"><span>Tài khoản của tôi</span></h4>    
-                                   <ul>
-                                     <li><a href="#">Tài khoản</a></li>
-                                     <li><a href="#">Yêu thích</a></li>
-                                     <li><a href="#">So sánh</a></li>
-                                     <li><a href="#">Kiểm tra</a></li>
-                                   </ul>
-                                 </li>                           
-                                 <li class='li-col languages languages--flag'>                            
-                                <h4 class="megamenu__subtitle"><span>Ngôn ngữ</span></h4>    
-                                   <ul>
-                                     <li class="languages__item active">
-                                       <a href="#">
-                                          <span class="languages__item__flag flag"><img src="images/flags/gb.png" alt=""/></span>
-                                          <span class="languages__item__label">Tiếng Việt</span>
-                                       </a>
-                                     </li>
-                                     <li class="languages__item">
-                                       <a href="#">
-                                          <span class="languages__item__flag flag"><img src="images/flags/de.png" alt=""/></span>
-                                          <span class="languages__item__label">English</span>
-                                       </a>
-                                     </li>
-                                   </ul>
-                                 </li>
-                                  <li class='li-col currency'>
-                                <h4 class="megamenu__subtitle"><span>Tiền tệ</span></h4>                            
-                                   <ul>
-                                    <li class="currency__item active"><a href="#">VNĐ - Việt Nam Đồng</a></li>
-                                     <li class="currency__item"><a href="#">USD - US Dollar</a></li>
-                                   </ul>
-                                 </li>
-                               </ul>
-                        </div>
                         <!-- /icon toggle menu -->
                         <!-- shopping cart start -->
-                        <div class="cart link-inline">
-                           <div class="dropdown text-right">
-                              <a class="dropdown-toggle">
-                              <span class="icon icon-shopping_basket"></span>
-                              <span class="badge badge--cart">2</span>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu--xs-full slide-from-top" role="menu">
-                                 <div class="container">
-                                    <div class="cart__top">(CÁC) MỤC ĐƯỢC THÊM GẦN ĐÂY</div>
-                                    <a href="#" class="icon icon-close cart__close"><span>ĐÓNG</span></a>
-                                    <ul>
-                                       <li class="cart__item">
-                                          <div class="cart__item__image pull-left"><a href="#"><img src="images/custom/layout11/products/product-02.jpg" alt=""/></a></div>
-                                          <div class="cart__item__control">
-                                             <div class="cart__item__delete"><a href="#" class="icon icon-delete"><span>XOÁ</span></a></div>
-                                             <div class="cart__item__edit"><a href="#" class="icon icon-edit"><span>SỬA</span></a></div>
-                                          </div>
-                                          <div class="cart__item__info">
-                                             <div class="cart__item__info__title">
-                                                <h2><a href="#">SẢN PHẨM</a></h2>
-                                             </div>
-                                             <div class="cart__item__info__price"><span class="info-label">Giá bán:</span><span>1.000.000 VNĐ</span></div>
-                                             <div class="cart__item__info__qty"><span class="info-label">Số lượng:</span><input type="text" class="input--ys" value='1' /></div>
-                                             <div class="cart__item__info__details">
-                                                <div class='multitooltip'>
-                                                   <a href="#">Chi tiết</a>
-                                                   <div class="tip on-bottom">
-                                                      <span><strong>Màu sắc:</strong> Purple</span>
-                                                      <span><strong>Số lượng:</strong> 200</span>
-                                                      <span><strong>Hình ảnh:</strong> No</span>
-                                                      <span><strong>Kích cỡ:</strong> 4"x3.5"</span>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </li>
-                                       <li class="cart__item">
-                                          <div class="cart__item__image pull-left"><a href="#"><img src="images/custom/layout11/products/product-01.jpg" alt=""/></a></div>
-                                          <div class="cart__item__control">
-                                             <div class="cart__item__delete"><a href="#" class="icon icon-delete"><span>Xoá</span></a></div>
-                                             <div class="cart__item__edit"><a href="#" class="icon icon-edit"><span>Sửa</span></a></div>
-                                          </div>
-                                          <div class="cart__item__info">
-                                             <div class="cart__item__info__title">
-                                                <h2 class="title-center"><a href="#">SẢN PHẨM</a></h2>
-                                             </div>
-                                             <div class="cart__item__info__price"><span class="info-label">Giá bán:</span><span>1.000.000 VNĐ</span></div>
-                                             <div class="cart__item__info__qty"><span class="info-label">Số lượng:</span><input type="text" class="input--ys" value='1' /></div>                                           
-                                          </div>
-                                       </li>
-                                    </ul>
-                                    <div class="cart__bottom">
-                                       <div class="cart__total">Tổng giỏ hàng: <span> 2.000.000 VNĐ</span></div>
-                                       <button class="btn btn--ys btn-checkout">KIỂM TRA <span class="icon icon--flippedX icon-reply"></span></button>
-                                       <a href="#" class="btn btn--ys"><span class="icon icon-shopping_basket"></span> XEM GIỎ HÀNG</a>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
+                        @include('shop.parts.shopping-pc')
                         <!-- shopping cart end -->       
                      </div>
                   </div>
@@ -341,7 +121,7 @@
       <div class="breadcrumbs">
          <div class="container">
             <ol class="breadcrumb breadcrumb--ys pull-left">
-               <li class="home-link"><a href="{{ asset('shop') }}" class="icon icon-home"></a></li>
+               <li class="home-link"><a href="index.html" class="icon icon-home"></a></li>
                <li><a href="#">Laptop</a></li>
                <li class="active">Dell</li>
             </ol>
