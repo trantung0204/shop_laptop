@@ -27,6 +27,7 @@ Route::prefix('shop')->group(function(){
 	Route::get('signupShop','Shop\ShopController@signupShop')->name('shop.signupShop');
 	Route::get('about','Shop\ShopController@about')->name('shop.about');
 	Route::get('contact','Shop\ShopController@contact')->name('shop.contact');
+	Route::get('guarantee','Shop\ShopController@guarantee')->name('shop.guarantee');
 });
 
 Route::get('/', function(){

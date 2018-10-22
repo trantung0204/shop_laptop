@@ -9767,7 +9767,6 @@ footer.fill-bg {
 /* subscribe-box */
 .subscribe-box {
   position: relative;
-  padding-bottom: 60px;
 }
 .subscribe-box h4 {
   padding-bottom: 14px;
@@ -9904,7 +9903,7 @@ footer.fill-bg {
 }
 /* social-links */
 footer .social-links {
-  margin: -60px 0 60px;
+  margin: -60px 0 0px;
 }
 @media (min-width: 768px) {
   footer .social-links {
