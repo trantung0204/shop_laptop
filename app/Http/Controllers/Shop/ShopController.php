@@ -139,15 +139,37 @@ class ShopController extends Controller
 	}
 	public function productShop($slug)
 	{
+		$categories=array();
+		$parents=Category::where('parent_id',null)->get();
+		foreach ($parents as $parent) {
+			$childs=Category::where('parent_id',$parent->id)->get();
+			$item=array();
+			foreach ($childs as $child) {
+				$item[$child->name]=$child;
+			}
+			$categories[$parent->name]=$item;
+		}
+		$brands=Brand::all();
 		$product = DB::table('products')->where('slug',$slug)->first();
 
-		$product_details = DB::table('product_details')->where('product_code',$product->code)->get();
 		$images = DB::table('images')->where('product_id',$product->id)->get();
-		//dd($images);
+		$detailList=ImportProduct::select('import_products.product_details_id')
+			->where('quantity','>',0)
+			->where('product_code',$product->code)
+			->distinct('import_products.product_details_id')->get();
+		$product_details=array();
+		foreach ($detailList as $detail) {
+			$product_details[$detail->product_details_id]=ImportProduct::join('product_details', 'product_details.id', '=', 'import_products.product_details_id')
+				->where('import_products.product_details_id',$detail->product_details_id)
+				->select('product_details.color_id','product_details.size_id','product_details.cpu','product_details.ram','product_details.disk','product_details.vga','product_details.resolution','import_products.origin_price','import_products.sale_price','import_products.quantity','import_products.import_code')->first();
+		}
+		// dd($product_details);
 		return view('shop.pages.product',[
 			'product' => $product,
 			'images' => $images,
-			'colors' => $product_details,
+			'product_details' => $product_details,
+			'categories' => $categories,
+			'brands' => $brands,
 		]);
 		// return view('shop.pages.product');
 	}
