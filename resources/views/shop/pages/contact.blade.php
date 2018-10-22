@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="external/slick/slick-theme.css">
 		<link rel="stylesheet" href="external/magnific-popup/magnific-popup.css">
 		<link rel="stylesheet" href="external/nouislider/nouislider.css">
-		<link rel="stylesheet" href="external/bootstrap-select/bootstrap-select.css">		
+		<link rel="stylesheet" href="external/bootstrap-select/bootstrap-select.css">
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/style.css">
 		<!-- Icon Fonts  -->
@@ -24,6 +24,7 @@
 		<!-- Head Libs -->
 		<!-- Modernizr -->
 		<script src="external/modernizr/modernizr.js"></script>
+
 	</head>
 	<body>
 		<div id="loader-wrapper">
@@ -42,7 +43,7 @@
 	    <div class="back-to-top"><span class="icon-keyboard_arrow_up"></span></div>
 	    <!-- /Back to top -->
 	    <!-- mobile menu -->
-		@include('shop.parts.mobile-navbar')		
+		@include('shop.parts.mobile-navbar')			
 	    <!-- /mobile menu -->
 		<!-- HEADER section -->
 		<div class="header-wrapper">
@@ -88,17 +89,6 @@
 						</div>
 							
 						</div>
-						<div class="col-sm-8 col-md-8 col-lg-6 col-xl-5 text-right visible-mobile-menu-on">
-							<!-- slogan start -->
-							<div class="slogan"> Chào mừng đến với T3 Store! </div>
-							<!-- slogan end --> 						
-							<div class="settings">
-								<!-- currency start -->
-								<!-- currency end --> 
-								<!-- language start -->
-								<!-- language end --> 
-							</div>
-						</div>
 						<div class="pull-right  col-lg-pull-3 col-md-3  col-xl-2 alignment-extra">
 							<div class="text-right">
 								<!-- search start -->
@@ -114,16 +104,14 @@
 										</form>
 									</div>
 								</div>
-								<!-- search end -->	
-								<!-- shopping cart start -->
-								@include('shop.parts.shopping-pc')
-								<!-- shopping cart end -->
 								<!-- search end -->			
 								<!-- account menu start -->
-							</div>
 								<!-- account menu end -->
 								<!-- icon toggle menu -->
 								<!-- /icon toggle menu -->
+								<!-- shopping cart start -->
+								@include('shop.parts.shopping-pc')
+								<!-- shopping cart end -->			
 							</div>
 						</div>
 					</div>
@@ -135,65 +123,89 @@
 		<div class="breadcrumbs">
 			<div class="container">
 				<ol class="breadcrumb breadcrumb--ys pull-left">
-					<li class="home-link"><a href="{{ asset('shop') }}" class="icon icon-home"></a></li>										
-					<li class="active">Đăng Ký</li>
+					<li class="home-link"><a href="index.html" class="icon icon-home"></a></li>										
+					<li class="active">Liên Hệ</li>
 				</ol>
 			</div>
 		</div>
 		<!-- /breadcrumbs --> 
 		<!-- CONTENT section -->
+		
 		<div id="pageContent">
-			<div class="container">				
-				<!-- title -->
-				<div class="title-box">
-					<h1 class="text-center text-uppercase title-under">ĐĂNG KÝ TÀI KHOẢN</h1>
-				</div>
-				<!-- /title -->		
+			<!-- map -->
+			<div class="content-bottom">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.319847236282!2d105.78519026488254!3d20.97981218602485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135accde64f515b%3A0x8635163e12717d64!2zVHLhuqduIFBow7osIFbEg24gUXXDoW4sIEjDoCDEkMO0bmcsIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1540192978939" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+			</div>				
+			<!-- /map -->
+			<section class="container">				
 				<div class="row">
-					<section class="col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xl-offset-2">
-						<div>
-							<img src="http://www.listopsis.pt/media/1404/device-mesh.png?mode=pad&width=1400&rnd=131315477300000000" alt="" width="100%">
-						</div>
-					</section>
-					<div class="divider divider--md visible-sm visible-xs"></div>
-					<section class="col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xl-offset-2">
-						<div class="login-form-box">
-							<h3 class="color small">ĐĂNG KÝ</h3>
-							<div class="form-group">
-								<label for="name">Tên <sup>*</sup></label>
-								<input type="text" class="form-control" id="name">
-							</div>
-							<div class="form-group">
-								<label for="name">Họ <sup>*</sup></label>
-								<input type="text" class="form-control" id="name">
-							</div>
-							<div class="form-group">
-								<label for="email">Email <sup>*</sup></label>
-								<input type="email" class="form-control" id="email">
-							</div>
-							<div class="form-group">
-								<label for="password">Mật khẩu <sup>*</sup></label>
-								<input type="password" class="form-control" id="password">
-							</div>
-							<div class="form-group">
-								<label for="repassword">Nhập lại mật khẩu <sup>*</sup></label>
-								<input type="password" class="form-control" id="repassword">
-							</div>
-							<br>
+					<div class="col-md-3 col-sm-12">
+						<h2 class="text-uppercase title-bottom">Liên Hệ</h2>
+						<ul class="list-icon">
+							<li>
+								<span class="icon icon-home"></span>
+								<strong>Địa chỉ :</strong> Đường Trần Phú, Quận Hà Đông, Thành phố Hà Nội
+							</li>
+							<li>
+								<span class="icon icon-call"></span>
+								<strong>SĐT:</strong> +84123456789
+							</li>
+							<li>
+								<span class="fa fa-fax"></span>
+								<strong>Fax:</strong> +84123456789
+							</li>
+							<li>
+								<span class="icon icon-schedule"></span>
+								<strong>Giờ làm việc:</strong> Tất cả các ngày trong tuần (trừ ngày lễ)
+								Bắt đầu từ 9:00 sáng - 9:00 chiều
+							</li>
+							<li>
+								<span class="icon icon-mail"></span>
+								<strong>E-mail:</strong> <a class="color" href="t3store@gmail.com">t3store@gmail.com</a>
+							</li>
+						</ul>
+						<div class="divider divider--sm"></div>
+					</div>
+					<div class="col-md-9  col-sm-12">
+						<div class="divider divider--lg visible-xs"></div>
+						<h2 class="text-uppercase title-bottom">Gửi tin nhắn với chúng tôi</h2>
+						<form action="#" class="contact-form">
+							<!-- input -->
 							<div class="row">
-								<div class="col-xs-12 col-sm-6 col-md-6">
-									<button class="btn btn--ys btn--xl" onclick="location.href='#';"><span class="icon icon-person_add"></span>ĐĂNG KÝ</button>			               			
+								<div class="col-md-4">
+									<div class="form-group">
+									    <label for="inputName">Tên của bạn <sup>*</sup></label>
+									    <input type="text" class="form-control" id="inputName">
+									  </div>
 								</div>
-								<div class="divider divider--md visible-xs"></div>
-								<div class="col-xs-12 col-sm-6 col-md-6">
-									<div class="pull-right note btn-top">* Bắt buộc</div>
+								<div class="col-md-4">
+									<div class="form-group">
+									    <label for="inputEmail">Email <sup>*</sup></label>
+									    <input type="email" class="form-control" id="inputEmail">
+									  </div>
 								</div>
-							</div>	
-						</div>
-						
-					</section>
-				</div>						
-			</div>
+								<div class="col-md-4">
+									<div class="form-group">
+									    <label for="inputPhone">Số điện thoại </label>
+									    <input type="text" class="form-control" id="inputPhone">
+									  </div>
+								</div>
+							</div>
+							<!-- /input -->
+							<!-- textarea -->
+							<div class="form-group">
+							    <label for="textareaMessage">Tin nhắn <sup>*</sup></label>
+							    <textarea  class="form-control" rows="12"  id="textareaMessage"></textarea>
+						   </div>
+						   <!-- /textarea -->
+						   <!-- button -->
+						   <div class="pull-right note">* Bắt buộc</div>
+						   <button class="btn btn--ys btn--xl btn-top" type="submit">Gửi tin nhắn</button>
+						   <!-- /button -->						   
+						</form>						
+					</div>
+				</div>					
+			</section>
 		</div>
 		<!-- End CONTENT section --> 
 		<!-- FOOTER section -->
@@ -214,8 +226,14 @@
 		<script src="external/nouislider/nouislider.min.js"></script>
 		<script src="external/isotope/isotope.pkgd.min.js"></script> 
 		<script src="external/imagesloaded/imagesloaded.pkgd.min.js"></script>
-		<script src="external/colorbox/jquery.colorbox-min.js"></script>
+        <script src="external/colorbox/jquery.colorbox-min.js"></script>
 		<!-- Custom --> 
 		<script src="js/custom.js"></script> 		
+
+		<!-- Google map -->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<script src="external/google_map/google_map_init.js"></script>
+
+
 	</body>
 </html>

@@ -37,13 +37,10 @@
 							<h4 class="text-left  title-under  mobile-collapse__title">THÔNG TIN</h4>
 							<div class="v-links-list mobile-collapse__content">
 								<ul>
-									<li><a href="about.html">Về chúng tôi</a></li>
-									<li><a href="support-24.html">Customer Service</a></li>
+									<li><a href="{{ asset('shop/about') }}">Về chúng tôi</a></li>
 									<li><a href="faq.html">Điều khoản</a></li>
-									<li><a href="site-map.html">Bản đồ</a></li>
-									<li><a href="warranty.html">Tìm kiếm nâng cao</a></li>
 									<li><a href="delivery-page.html">Đơn đặt và trả lại</a></li>
-									<li><a href="contact.html">Liên hệ với chúng tôi</a></li>
+									<li><a href="{{ asset('shop/about') }}">Liên hệ với chúng tôi</a></li>
 								</ul>
 							</div>
 						</div>
@@ -55,9 +52,6 @@
 								<ul>
 									<li><a href="{{ asset('shop/loginShop') }}">Đăng Nhập</a></li>
 									<li><a href="shopping_cart.html">Xem Đơn Hàng</a></li>
-									<li><a href="wishlist.html">Danh Sách Yêu Thích</a></li>
-									<li><a href="support-24.html">Theo Dõi Đơn Hàng</a></li>
-									<li><a href="faq.html">Giúp Đỡ</a></li>
 								</ul>
 							</div>
 						</div>

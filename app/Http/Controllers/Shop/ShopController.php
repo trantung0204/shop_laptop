@@ -219,4 +219,8 @@ class ShopController extends Controller
 	{
 		return view('shop.pages.about');
 	}
+	public function contact()
+	{
+		return view('shop.pages.contact');
+	}
 }
