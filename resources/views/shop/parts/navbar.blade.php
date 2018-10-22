@@ -18,7 +18,6 @@
 				@endforeach
 				<div style="clear: both;"></div>
 			@endforeach
-			
 		</ul>
 	</li>
 	@endif
