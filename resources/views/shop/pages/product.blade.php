@@ -141,75 +141,63 @@
                      <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 hidden-xs">
                            <div class="product-main-image">
-                              <div class="product-main-image__item"><img class="product-zoom" src='images/product/product-big-1.jpg' data-zoom-image="images/product/product-big-1-zoom.jpg" alt="" /></div>
+                              @php
+                                 $src=$images[0]->link;
+                                 $src=str_replace('public',asset('storage'),$src);
+                              @endphp
+                              <div class="product-main-image__item"><img class="product-zoom" src='{{$src}}' data-zoom-image="{{$src}}" alt="" /></div>
                               <div class="product-main-image__zoom"></div>
                            </div>
                            <div class="product-images-carousel">
                               <ul id="smallGallery">
-                                 <li><a href="#" data-image="images/product/product-big-1.jpg" data-zoom-image="images/product/product-big-1-zoom.jpg"><img src="images/product/product-small-1.jpg" alt="" /></a></li>
-                                 <li><a href="#" data-image="images/product/product-big-2.jpg" data-zoom-image="images/product/product-big-2-zoom.jpg"><img src="images/product/product-small-2.jpg" alt="" /></a></li>
-                                 <li><a href="#" data-image="images/product/product-big-3.jpg" data-zoom-image="images/product/product-big-3-zoom.jpg"><img src="images/product/product-small-3.jpg" alt="" /></a></li>
-                                 <li><a href="#" data-image="images/product/product-big-4.jpg" data-zoom-image="images/product/product-big-4-zoom.jpg"><img src="images/product/product-small-4.jpg" alt="" /></a></li>
-                                 <li><a href="#" data-image="images/product/product-big-5.jpg" data-zoom-image="images/product/product-big-5-zoom.jpg"><img src="images/product/product-small-5.jpg" alt="" /></a></li>
+                                 @foreach ($images as $image)
+                                    @php
+                                       $src=$image->link;
+                                       $src=str_replace('public',asset('storage'),$src);
+                                    @endphp
+                                    <li><a href="#" data-image="{{$src}}" data-zoom-image="{{$src}}"><img src="{{$src}}" alt="" /></a></li>
+                                 @endforeach
                               </ul>
                            </div>
-                           <a href="http://www.youtube.com/watch?v=0O2aH4XLbto" class="video-link"><span class="icon icon-videocam"></span>Video</a>
                         </div>
                         <div class="product-info col-sm-6 col-md-6 col-lg-6 col-xl-6">
                            <div class="wrapper hidden-xs">
-                              <div class="product-info__sku pull-left">Mã sản phẩm: <strong>mtk012c</strong></div>
-                              <div class="product-info__availability pull-right">Trạng thái:   <strong class="color">Còn hàng</strong></div>
+                              <div class="product-info__sku pull-left">Mã sản phẩm: <strong>{{$product->code}}</strong></div>
+                              <div class="product-info__availability pull-right">Trạng thái:   <strong class="color">Còn <span class="quantity"></span> sản phẩm</strong></div>
                            </div>
                            <div class="product-info__title">
-                              <h2>Tên sản phẩm</h2>
+                              <h2>{{$product->name}}</h2>
                            </div>
                            <div class="wrapper visible-xs">
-                              <div class="product-info__sku pull-left">Mã sản phẩm: <strong>mtk012c</strong></div>
-                              <div class="product-info__availability pull-right">Trạng thái:   <strong class="color">Còn hàng</strong></div>
+                              <div class="product-info__sku pull-left">Mã sản phẩm: <strong>{{$product->code}}</strong></div>
+                              <div class="product-info__availability pull-right">Trạng thái:   <strong class="color">Còn <span class="quantity"></span> sản phẩm</strong></div>
                            </div>
                            <div class="visible-xs">
                               <div class="clearfix"></div>
                               <ul id="mobileGallery">
-                                 <li><a href="#" data-image="images/product/product-big-1.jpg" data-zoom-image="images/product/product-big-1-zoom.jpg"><img src="images/product/product-small-1.jpg" alt="" /></a></li>
-                                 <li><a href="#" data-image="images/product/product-big-2.jpg" data-zoom-image="images/product/product-big-2-zoom.jpg"><img src="images/product/product-small-2.jpg" alt="" /></a></li>
-                                 <li><a href="#" data-image="images/product/product-big-3.jpg" data-zoom-image="images/product/product-big-3-zoom.jpg"><img src="images/product/product-small-3.jpg" alt="" /></a></li>
-                                 <li><a href="#" data-image="images/product/product-big-4.jpg" data-zoom-image="images/product/product-big-4-zoom.jpg"><img src="images/product/product-small-4.jpg" alt="" /></a></li>
-                                 <li><a href="#" data-image="images/product/product-big-5.jpg" data-zoom-image="images/product/product-big-5-zoom.jpg"><img src="images/product/product-small-5.jpg" alt="" /></a></li>
+                                 @foreach ($images as $image)
+                                    @php
+                                       $src=$image->link;
+                                       $src=str_replace('public',asset('storage'),$src);
+                                    @endphp
+                                    <li><a href="#" data-image="{{$src}}" data-zoom-image="{{$src}}"><img src="{{$src}}" alt="" /></a></li>
+                                 @endforeach
                               </ul>
                            </div>
-                           <div class="price-box product-info__price"><span class="price-box__new">800.000 VNĐ</span> <span class="price-box__old">1.000.000 VNĐ</span></div>
+                           <div class="price-box product-info__price"><span class="price-box__new product_price sale_price"></span> <span class="price-box__old product_price origin_price"></span></div>
                            <div class="product-info__review">
                               <div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
                               <a href="#">1 Đánh giá</a> <a href="#">Thêm đánh giá của bạn</a> 
                            </div>
                            <div class="divider divider--xs product-info__divider hidden-xs"></div>
-                           <div class="product-info__description hidden-xs">
-                              <div class="product-info__description__brand"><img src="images/custom/brand.png"  alt="" /> </div>
-                              <div class="product-info__description__text">Chi tiết sản phẩm</div>
-                           </div>
+                           @if (isset($product_details))
+                              @foreach ($product_details as $detail)
+                                 <div class="detail-option-box" origin_price="{{$detail->origin_price}}" sale_price="{{$detail->sale_price}}" quantity="{{$detail->quantity}}">
+                                    {{$detail->cpu}} - {{$detail->ram}} - {{$detail->vga}} - {{$detail->disk}} - {{$detail->resolution}} - {{$detail->color_id}} - {{$detail->size_id}}
+                                 </div>
+                              @endforeach
+                           @endif
                            <div class="divider divider--xs product-info__divider"></div>
-                           <div class="wrapper">
-                              <div class="pull-left"><span class="option-label">Màu sắc:</span></div>
-                              <div class="pull-right required">* Bắt buộc</div>
-                           </div>
-                           <ul class="options-swatch options-swatch--color options-swatch--lg">
-                              <li><a href="#"><span class="swatch-label"><img src="images/colors/oldlace.png" alt=""/></span></a></li>
-                              <li><a href="#"><span class="swatch-label"><img src="images/colors/dark-grey.png" alt=""/></span></a></li>
-                              <li><a href="#"><span class="swatch-label"><img src="images/colors/grey.png" alt=""/></span></a></li>
-                              <li><a href="#"><span class="swatch-label"><img src="images/colors/light-grey.png" alt=""/></span></a></li>
-                           </ul>
-                           <div class="wrapper">
-                              <div class="pull-left"><span class="option-label">SIZE:</span></div>
-                              <div class="pull-left required">*</div>
-                           </div>
-                           <ul class="options-swatch options-swatch--size options-swatch--lg">
-                              <li><a href="#">S</a></li>
-                              <li><a href="#">M</a></li>
-                              <li><a href="#">L</a></li>
-                              <li><a href="#">XL</a></li>
-                              <li><a href="#">2XL</a></li>
-                              <li><a href="#">3XL</a></li>
-                           </ul>
                            <div class="divider divider--sm"></div>
                            <div class="wrapper">
                               <div class="pull-left"><span class="qty-label">Số lượng:</span></div>
@@ -335,5 +323,10 @@
       <!-- Custom --> 
       <script src="js/custom.js"></script> 
       <script src="js/js-product.js"></script>     
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>              
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
+      <script src="{{ asset('js/autoNumeric-min.js') }}"></script>
+      <script src="{{ asset('shop_asset/') }}/ajax/ajax-product.js"></script> 
    </body>
 </html>

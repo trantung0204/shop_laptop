@@ -1001,6 +1001,6 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>					
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
 		<script src="{{ asset('js/autoNumeric-min.js') }}"></script>
-		<script src="{{ asset('shop_asset/') }}/ajax/ajax.js"></script> 	
+		<script src="{{ asset('shop_asset/') }}/ajax/ajax-home.js"></script> 	
 	</body>
 </html>
