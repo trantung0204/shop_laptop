@@ -17,7 +17,7 @@
 					</div>
 				</div>
 				<!-- subscribe-box -->
-				<div class="subscribe-box offset-top-20">
+				<!-- <div class="subscribe-box offset-top-20">
 					<div class="mobile-collapse">
 						<h4 class="mobile-collapse__title">Đăng kí bản tin</h4>
 						<div class="mobile-collapse__content">
@@ -27,7 +27,7 @@
 							</form>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!-- /subscribe-box --> 
 			</div>
 			<div class="col-sm-12 col-md-7 col-lg-6 border-sep-left">

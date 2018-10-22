@@ -52,7 +52,7 @@
                <div class="row">
                   <div class="col-xl-3">
                      <!-- logo start --> 
-                     <a href="index-11.html"><img class="logo replace-2x img-responsive" src="images/custom/layout11/logo.png" alt=""/></a> 
+                     <a href="{{ asset('shop') }}"><img class="logo replace-2x img-responsive" src="images/custom/layout11/logo.png" alt=""/></a> 
                      <!-- logo end --> 
                   </div>
                   <div class="col-xl-7 col-lg-push-12 text-center">                    

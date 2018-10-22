@@ -35,7 +35,7 @@
 	@endif	
 	<li class="dropdown dropdown-mega-menu">
 		<span class="dropdown-toggle extra-arrow"></span>
-		<a href="gallery-layout-1.html" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">BẢO HÀNH</span></a>
+		<a href="{{ asset('shop/guarantee') }}" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">BẢO HÀNH</span></a>
 	</li>
 	<li class="dropdown dropdown-mega-menu dropdown-two-col">
 		<span class="dropdown-toggle extra-arrow"></span>

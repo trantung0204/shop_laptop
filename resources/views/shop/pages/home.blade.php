@@ -125,7 +125,7 @@
 							@if (isset($slides))
 								@foreach ($slides as $slide)
 									<div>
-										<a href="listing-layout11.html" data-id="{{$slide->id}}" class="banner zoom-in font-size-responsive">
+										<a href="{{ asset('shop/productShop/')}}/{{$slide->slug}}" data-id="{{$slide->id}}" class="banner zoom-in font-size-responsive">
 											<span class="figure">
 												@php
 													$src=$slide->images[0]->link;
@@ -147,7 +147,7 @@
 								@endforeach
 							@else
 								<div>
-									<a href="listing-layout11.html" class="banner zoom-in font-size-responsive">
+									<a href="{{ asset('shop/listing') }}" class="banner zoom-in font-size-responsive">
 										<span class="figure">
 											<img src="images/custom/layout11/banner-04.jpg" alt=""/>
 											<span class="figcaption">
@@ -163,7 +163,7 @@
 									</a>
 								</div>
 								<div>
-									<a href="listing-layout11.html" class="banner zoom-in font-size-responsive">
+									<a href="{{ asset('shop/listing') }}" class="banner zoom-in font-size-responsive">
 										<span class="figure">
 											<img src="images/custom/layout11/banner-05.jpg" alt=""/>
 											<span class="figcaption">
@@ -187,7 +187,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-6">
 						<div class="row">
 							<div class="col-sm-6 col-md-6">
-								<a href="listing-layout11.html" class="banner zoom-in">
+								<a href="{{ asset('shop/listing') }}" class="banner zoom-in">
 									<span class="figure">
 										<img src="images/custom/layout11/banner-07.jpg" alt=""/>
 										<span class="figcaption text-left">
@@ -203,7 +203,7 @@
 								</a>
 							</div>
 							<div class="col-sm-6  col-md-6">
-								<a href="listing-layout11.html" class="banner zoom-in">
+								<a href="{{ asset('shop/listing') }}" class="banner zoom-in">
 									<span class="figure">
 										<img src="images/custom/layout11/banner-08.jpg" alt=""/>
 										<span class="figcaption text-center">
@@ -220,7 +220,7 @@
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<a href="listing-layout11.html" class="banner zoom-in">
+								<a href="{{ asset('shop/listing') }}" class="banner zoom-in">
 									<span class="figure">
 										<img src="images/custom/layout11/banner-09.jpg" alt=""/>
 										<span class="figcaption">
@@ -245,7 +245,7 @@
 				<div class="row">					
 					<div class="col-xs-12">
 						<!-- banner -->
-						<a href="listing-layout11.html" class="banner banner-bg image-bg zoom-in" data-image="images/custom/layout11/banner-23.jpg">
+						<a href="{{ asset('shop/listing') }}" class="banner banner-bg image-bg zoom-in" data-image="images/custom/layout11/banner-23.jpg">
 							<span class="figure">
 								<img src="images/custom/layout11/banner-23.jpg" alt=""/>
 								<span class="figcaption">
@@ -270,7 +270,7 @@
 					<div class="row">
 						<div class="bannerCarousel box-baners ">
 							<div class="col-md-3">
-								<a href="listing-layout11.html" class="banner zoom-in">
+								<a href="{{ asset('shop/listing') }}" class="banner zoom-in">
 									<span class="figure">
 										<img src="images/custom/layout11/banner-10.jpg" alt=""/>
 										<span class="figcaption text-left">
@@ -287,7 +287,7 @@
 								</a>
 							</div>
 							<div class="col-md-3">
-								<a href="listing-layout11.html" class="banner zoom-in">
+								<a href="{{ asset('shop/listing') }}" class="banner zoom-in">
 								<span class="figure">
 									<img src="images/custom/layout11/banner-11.jpg" alt=""/>
 									<span class="figcaption">
@@ -303,7 +303,7 @@
 								</a>
 							</div>
 							<div class="col-md-3">
-								<a href="listing-layout11.html" class="banner zoom-in">
+								<a href="{{ asset('shop/listing') }}" class="banner zoom-in">
 								<span class="figure">
 									<img src="images/custom/layout11/banner-12.jpg" alt=""/>
 									<span class="figcaption text-left text-top">
@@ -318,7 +318,7 @@
 								</a>
 							</div>							
 							<div class="col-md-3">
-								<a href="listing-layout11.html" class="banner zoom-in">
+								<a href="{{ asset('shop/listing') }}" class="banner zoom-in">
 									<span class="figure">
 										<img src="images/custom/layout11/banner-13.jpg" alt=""/>
 										<span class="figcaption">
@@ -666,7 +666,7 @@
 							<!--  -->
 							<div class="col-md-3 col-sm-6 col-xs-12">
 								<!-- banner -->
-								<a href="listing-layout11.html" class="banner banner-md bg-pink  zoom-in">
+								<a href="{{ asset('shop/listing') }}" class="banner banner-md bg-pink  zoom-in">
 									<span class="figure">
 										<span class="figcaption text-center">
 											<span class="block-table">
@@ -683,7 +683,7 @@
 							<!-- / -->
 							<!--  -->
 							<div class="col-md-3 col-sm-6 col-xs-12">
-								<a href="listing-layout11.html" class="banner banner-md bg-light-blue zoom-in">
+								<a href="{{ asset('shop/listing') }}" class="banner banner-md bg-light-blue zoom-in">
 									<span class="figure">
 										<span class="figcaption text-center">
 											<span class="block-table">
@@ -700,7 +700,7 @@
 							<!-- / -->
 							<!--  -->
 							<div class="col-md-3 col-sm-6 col-xs-12">
-								<a href="listing-layout11.html" class="banner banner-md bg-yellow zoom-in">
+								<a href="{{ asset('shop/listing') }}" class="banner banner-md bg-yellow zoom-in">
 									<span class="figure">
 										<span class="figcaption text-center">
 											<span class="block-table">
@@ -716,7 +716,7 @@
 							<!-- / -->
 							<!--  -->
 							<div class="col-md-3 col-sm-6 col-xs-12">
-								<a href="listing-layout11.html" class="banner banner-md bg-green-light zoom-in">
+								<a href="{{ asset('shop/listing') }}" class="banner banner-md bg-green-light zoom-in">
 									<span class="figure">
 										<span class="figcaption text-center">
 											<span class="block-table">
