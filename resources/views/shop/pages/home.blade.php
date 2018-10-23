@@ -125,7 +125,7 @@
 							@if (isset($slides))
 								@foreach ($slides as $slide)
 									<div>
-										<a href="listing-layout11.html" data-id="{{$slide->id}}" class="banner zoom-in font-size-responsive">
+										<a href="{{ asset('shop/productShop/') }}/{{$slide->slug}}" data-id="{{$slide->id}}" class="banner zoom-in font-size-responsive">
 											<span class="figure">
 												@php
 													$src=$slide->images[0]->link;
@@ -358,19 +358,19 @@
 										<div class="product__inside">
 											<!-- product image -->
 											<div class="product__inside__image">
-												<a href="product-layout11.html"> <img src="@php
+												<a href="{{ asset('shop/productShop/') }}/{{$product->slug}}"> <img src="@php
 														$src=$product->link;
 														$src=str_replace('public',asset('storage'),$src);
 													@endphp
 													{{$src}}" alt=""> </a> 
 												<!-- quick-view --> 
-												<a href="#" class="quick-view"><b><span class="icon icon-visibility"></span> Xem ngay</b> </a> 
+												<a href="{{ asset('shop/productShop/') }}/{{$product->slug}}" class="quick-view"><b><span class="icon icon-visibility"></span> Xem ngay</b> </a> 
 												<!-- /quick-view --> 
 											</div>
 											<!-- /product image --> 											
 											<!-- product name -->
 											<div class="product__inside__name">
-												<h2><a href="product-layout11.html">{{$product->name}}</a></h2>
+												<h2><a href="{{ asset('shop/productShop/') }}/{{$product->slug}}">{{$product->name}}</a></h2>
 											</div>
 											<!-- /product name --> 
 											<!-- product price -->
@@ -382,10 +382,10 @@
 											<div class="product__inside__hover">
 												<!-- product info -->
 												<div class="product__inside__info">
-													<div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
+													<div class="product__inside__info__btns"> <a href="{{ asset('shop/productShop/') }}/{{$product->slug}}" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
 													<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
 													<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-													<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem ngay</a> </div>
+													<a href="{{ asset('shop/productShop/') }}/{{$product->slug}}" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem ngay</a> </div>
 													<ul class="product__inside__info__link hidden-xs">
 														<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào danh sách yêu thích</span></a></li>
 														<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
@@ -1001,6 +1001,11 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>					
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
 		<script src="{{ asset('js/autoNumeric-min.js') }}"></script>
+	      <script type="text/javascript">
+	         var asset='{{ asset('/') }}';
+	      </script>
 		<script src="{{ asset('shop_asset/') }}/ajax/ajax-home.js"></script> 	
+      	<script src="{{ asset('shop_asset/') }}/ajax/ajax-product.js"></script> 
+
 	</body>
 </html>

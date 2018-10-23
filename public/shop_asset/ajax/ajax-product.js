@@ -10,7 +10,123 @@ $(document).ready(function () {
 		$('.product_price.sale_price').autoNumeric('set',$(this).attr('sale_price'));
 		$('.product_price.origin_price').autoNumeric('set',$(this).attr('origin_price'));
 		$('.product-info .quantity').text($(this).attr('quantity'));
+		$('#btn-add-to-cart').attr('detail_id',$(this).attr('detail_id'));
+		$('#btn-add-to-cart').attr('receipt_code',$(this).attr('receipt_code'));
+		// $('#buy-quantity').attr('max',$(this).attr('quantity'));
 	})
 
+
+	$('.detail-option-box').on('click',function () {
+		$('.detail-option-box').removeClass('active');
+		$(this).toggleClass('active');
+	})
 	$('.detail-option-box').eq(0).trigger('click');
+
+	$(document).on('click','#btn-add-to-cart',function () {
+		// alert(asset+'card/add');
+		$.ajax({
+			type: 'post',
+			url: asset+'shop/card/add',
+			data: {
+				receipt_code: $(this).attr('receipt_code'),
+				detail_id: $(this).attr('detail_id'),
+				buy_quantity: $('#buy-quantity').val(),
+			},	
+
+			success: function (response) {
+				console.log(response);
+				if (response.error) {
+					toastr.warning(response.msg);
+				}else{
+					toastr.success(response.msg);
+					showCart();
+				}
+				
+			},
+			error: function (error) {
+			}
+		})
+	})
+	$(document).on('click','.remove-item',function () {
+		// alert(asset+'card/add');
+		$.ajax({
+			type: 'get',
+			url: asset+'shop/card/removeItem',
+			data: {
+				receipt_code: $(this).attr('receipt_code'),
+				detail_id: $(this).attr('detail_id'),
+				buy_quantity: $('#buy-quantity').val(),
+			},	
+
+			success: function (response) {
+				console.log(response);
+				if (response.error) {
+					toastr.warning(response.msg);
+				}else{
+					toastr.success(response.msg);
+					showCart();
+				}
+				
+			},
+			error: function (error) {
+			}
+		})
+	})
+
+	function showCart() {
+		$.ajax({
+			type: 'get',
+			url: asset+'shop/card/showCart',
+
+			success: function (response) {
+				// var items=JSON.stringify(response);
+				console.log(response);
+				$('#pc-cart-list').empty();
+				$.each(response.content,function( key, val ) {
+					$('#pc-cart-list').append(`
+						<li class="cart__item">
+			               <div class="cart__item__image pull-left">
+			               	 <a href="#">
+			                    <img src="`+val.options.image+`" alt=""/>
+			               	 </a>
+			               </div>
+			               <div class="cart__item__control">
+			                  <div class="cart__item__delete"><a data-row-id="`+val.rowId+`" class="remove-item icon icon-delete"><span>XOÁ</span></a></div>
+			                  <div class="cart__item__edit"><a data-row-id="`+val.rowId+`" class="icon icon-edit"><span>SỬA</span></a></div>
+			               </div>
+			               <div class="cart__item__info">
+			                  <div class="cart__item__info__title">
+			                     <h2><a href="#">`+val.name+`</a></h2>
+			                  </div>
+			                  <div class="cart__item__info__price"><span class="info-label">Giá bán:</span>
+			                  		<span class="item-price-`+key+`"></span></div>
+			                  <div class="cart__item__info__qty"><span class="info-label">Số lượng:</span>
+			                  <input type="text" class="input--ys" value='`+val.qty+`' /></div>
+			                  <div class="cart__item__info__details">
+			                     <div class='multitooltip'>
+			                        <a href="#">Chi tiết</a>
+			                        <div class="tip on-bottom">
+			                           <span><strong>Màu:</strong>`+val.options.color+`</span>
+			                           <span><strong>CPU:</strong>`+val.options.cpu+`</span>
+			                           <span><strong>RAM:</strong>`+val.options.ram+` GB</span>
+			                           <span><strong>VGA:</strong>`+val.options.vga+`</span>
+			                           <span><strong>Ổ cứng:</strong>`+val.options.disk+` GB</span>
+			                           <span><strong>Kích thước:</strong>`+val.options.size+` Inch</span>
+			                           <span><strong>Độ phân giải:</strong>`+val.options.resolution+`p</span>
+			                        </div>
+			                     </div>
+			                  </div>
+			               </div>
+			            </li>`);
+					$(".item-price-"+key).autoNumeric('init', {aSign:' VNĐ', pSign:'s' ,mDec: '0'  });
+					$(".item-price-"+key).autoNumeric('set', val.price);
+				})
+				$('#cart-list-total').text(response.total+" VNĐ");
+				$('#cart-list-count').text(response.count);
+			},
+			error: function (error) {
+			}
+		})
+	}
+	showCart();
 })

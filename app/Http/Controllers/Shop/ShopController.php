@@ -52,7 +52,7 @@ class ShopController extends Controller
 				->where('import_products.product_code',$product->code)
 				->join('brands', 'products.brand_id', '=', 'brands.id')
 				->join('images', 'images.product_id', '=', 'products.id')
-				->select('import_products.id','import_products.origin_price','import_products.sale_price','import_products.quantity','import_products.import_code','products.code','products.name','brands.name as brand_name','images.link')
+				->select('import_products.id','import_products.origin_price','import_products.sale_price','import_products.quantity','import_products.import_code','products.code','products.slug','products.name','brands.name as brand_name','images.link')
 				// ->orderBy('import_products.id','asc')
 				->orderBy('import_products.sale_price','asc')
 				->first();
@@ -65,77 +65,6 @@ class ShopController extends Controller
 		// $category = Category::where('slug',$slug)->first();
 		// $products = Product::where('category_id',$category->id)->get();
 		return view('shop.pages.listing',compact('category','products'));
-	}
-	public function modalDetail($id)
-	{
-		$product = Product::find($id);
-
-		$sizes = [];
-		$arrColor = [];
-		$product_details = DB::table('product_details')->where('product_code',$product->code)->get();
-		foreach ($product_details as $key => $product_detail) {
-			$idColor = $product_detail->color_id;
-			$colors = Color::find($idColor);			
-			array_push($arrColor,$colors);
-			if ($key == 0) {
-				$sizes = DB::table('product_details')
-				->where('product_code',$product_detail->product_code)
-				->where('color_id',$product_detail->color_id)
-				->get();
-			}		
-		};
-		$colorDetails = array_unique($arrColor);
-		$arrSize =[];
-		foreach ($sizes as $key => $value) {
-			$size = Size::find($value->size_id);
-			array_push($arrSize,$size->size);
-		}
-
-		$images = Image::where('product_id',$id)->first();
-		$src = $images->link;
-		$src = str_replace("public",asset("/")."storage",$src);
-		
-		return response()->json([
-			'product' => $product,
-			'src' => $src,
-			'product_details' => $product_details,
-			'color' => $colorDetails,
-			'size' => $arrSize,
-		]);
-	}
-	public function changeColor(Request $request)
-	{
-		$color = Color::find($request->color_id);
-
-		$arrSize =[];
-		$sizes = DB::table('product_details')
-				->where('product_code',$request->product_code)
-				->where('color_id',$request->color_id)
-				->get();	
-		foreach ($sizes as $key => $value) {
-			$size = Size::find($value->size_id);
-			array_push($arrSize,$size->size);
-		}		
-
-		$image = DB::table('images')
-				->where('product_id',$request->idProduct)
-				->where('color_id',$request->color_id)
-				->first();
-		if ($image == null) {
-			unset($image);
-			return response()->json([
-				'size' => $arrSize,
-				'color' => $color,						
-			]);
-		}else{
-			$srcImage = $image->link;
-			$srcImage = str_replace("public",asset("/")."storage",$srcImage);
-			return response()->json([
-				'size' => $arrSize,
-				'color' => $color,		
-				'srcImage' => $srcImage					
-			]);
-		}	
 	}
 	public function productShop($slug)
 	{
@@ -160,8 +89,10 @@ class ShopController extends Controller
 		$product_details=array();
 		foreach ($detailList as $detail) {
 			$product_details[$detail->product_details_id]=ImportProduct::join('product_details', 'product_details.id', '=', 'import_products.product_details_id')
+			    ->join('sizes', 'product_details.size_id', '=', 'sizes.id')
+			    ->join('colors', 'product_details.color_id', '=', 'colors.id')
 				->where('import_products.product_details_id',$detail->product_details_id)
-				->select('product_details.color_id','product_details.size_id','product_details.cpu','product_details.ram','product_details.disk','product_details.vga','product_details.resolution','import_products.origin_price','import_products.sale_price','import_products.quantity','import_products.import_code')->first();
+				->select('colors.name as color_name','sizes.size','product_details.id','product_details.cpu','product_details.ram','product_details.disk','product_details.vga','product_details.resolution','import_products.origin_price','import_products.sale_price','import_products.quantity','import_products.import_code')->first();
 		}
 		// dd($product_details);
 		return view('shop.pages.product',[
@@ -172,40 +103,6 @@ class ShopController extends Controller
 			'brands' => $brands,
 		]);
 		// return view('shop.pages.product');
-	}
-	public function changeColorDetail(Request $request)
-	{
-		$color = Color::find($request->color_id);
-
-		$arrSize =[];
-		$sizes = DB::table('product_details')
-				->where('product_code',$request->product_code)
-				->where('color_id',$request->color_id)
-				->get();	
-		foreach ($sizes as $key => $value) {
-			$size = Size::find($value->size_id);
-			array_push($arrSize,$size->size);
-		}		
-
-		$image = DB::table('images')
-				->where('product_id',$request->idProduct)
-				->where('color_id',$request->color_id)
-				->first();
-		if ($image == null) {
-			unset($image);
-			return response()->json([
-				'size' => $arrSize,
-				'color' => $color,						
-			]);
-		}else{
-			$srcImage = $image->link;
-			$srcImage = str_replace("public",asset("/")."storage",$srcImage);
-			return response()->json([
-				'size' => $arrSize,
-				'color' => $color,		
-				'srcImage' => $srcImage					
-			]);
-		}	
 	}
 	public function loginShop()
 	{
