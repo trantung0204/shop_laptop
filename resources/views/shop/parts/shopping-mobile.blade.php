@@ -1,4 +1,4 @@
-<div class="pull-right col-stuck-cart text-right">                      
+{{-- <div class="pull-right col-stuck-cart text-right">                      
    <div class="cart link-inline">
       <div class="dropdown text-right">
          <a class="dropdown-toggle">
@@ -69,4 +69,4 @@
             </div>
          </div>
       </div>
-   </div>
+   </div> --}}

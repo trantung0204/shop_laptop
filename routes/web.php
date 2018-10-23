@@ -18,16 +18,16 @@ Route::get('checkout','TestController@checkout')->name('checkout');
 
 Route::prefix('shop')->group(function(){
 	Route::get('/', 'Shop\ShopController@index')->name('shop.index');
-	Route::get('modalDetail/{id}','Shop\ShopController@modalDetail')->name('shop.modalDetail');
-	Route::post('changeColor', 'Shop\ShopController@changeColor')->name('shop.changeColor');
 	Route::get('listing/','Shop\ShopController@listing')->name('shop.listing');
 	Route::get('productShop/{slug}','Shop\ShopController@productShop')->name('shop.productShop');
 	Route::get('loginShop','Shop\ShopController@loginShop')->name('shop.loginShop');
-	Route::post('changeColorDetail', 'Shop\ShopController@changeColorDetail')->name('shop.changeColorDetail');
 	Route::get('signupShop','Shop\ShopController@signupShop')->name('shop.signupShop');
 	Route::get('about','Shop\ShopController@about')->name('shop.about');
 	Route::get('contact','Shop\ShopController@contact')->name('shop.contact');
 	Route::get('guarantee','Shop\ShopController@guarantee')->name('shop.guarantee');
+	Route::post('card/add','Shop\CartController@addProduct')->name('cart.add');
+	Route::get('card/test','Shop\CartController@testCart')->name('cart.test');
+	Route::get('card/showCart','Shop\CartController@showCart')->name('cart.showCart');
 });
 
 Route::get('/', function(){
