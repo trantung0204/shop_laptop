@@ -11,6 +11,7 @@
       <base href="{{asset('')}}shop_asset/">
       <!-- Mobile Specific Metas -->
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
       <!-- External Plugins CSS -->
       <link rel="stylesheet" href="external/slick/slick.css">
       <link rel="stylesheet" href="external/slick/slick-theme.css">
@@ -20,8 +21,28 @@
       <link rel="stylesheet" href="css/style.css">
       <!-- Icon Fonts  -->
       <link rel="stylesheet" href="font/style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
       <!-- Head Libs -->
       <!-- Modernizr -->
+      <style type="text/css" media="screen">
+         .detail-option-box{
+            border: solid #1fc0a0 3px;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 14px;
+            /*line-height: 27px;*/
+            /*height: 57px;*/
+            overflow: hidden;
+            cursor: pointer;
+         }
+         .detail-option-box.active{
+            background: #1fc0a0;
+            color: white;
+         }
+         #Tab1 img{
+            width: 100%;
+         }
+      </style>
       <script src="external/modernizr/modernizr.js"></script>
    </head>
    <body>
@@ -192,8 +213,59 @@
                            <div class="divider divider--xs product-info__divider hidden-xs"></div>
                            @if (isset($product_details))
                               @foreach ($product_details as $detail)
-                                 <div class="detail-option-box" origin_price="{{$detail->origin_price}}" sale_price="{{$detail->sale_price}}" quantity="{{$detail->quantity}}">
-                                    {{$detail->cpu}} - {{$detail->ram}} - {{$detail->vga}} - {{$detail->disk}} - {{$detail->resolution}} - {{$detail->color_id}} - {{$detail->size_id}}
+                                 @php
+                                    switch ($detail->cpu) {
+                                       case '1':
+                                          $cpu='Core i3';
+                                          break;
+                                       case '2':
+                                          $cpu='Core i5';
+                                          break;
+                                       case '3':
+                                          $cpu='Core i7';
+                                          break;
+                                       case '4':
+                                          $cpu='Pentium';
+                                          break;
+                                       case '5':
+                                          $cpu='Core M';
+                                          break;
+                                       case '6':
+                                          $cpu='AMD';
+                                          break;
+                                      
+                                       default:
+                                          $cpu='Intel';
+                                          break;
+                                    }
+                                    switch ($detail->vga) {
+                                         case '1':
+                                             $vga='GTX 1030';
+                                             break;
+                                         case '2':
+                                             $vga='GTX 1050';
+                                             break;
+                                         case '3':
+                                             $vga='GTX 1050ti';
+                                             break;
+                                         case '4':
+                                             $vga='GTX 1060';
+                                             break;
+                                         case '5':
+                                             $vga='GTX 1070';
+                                             break;
+                                         case '6':
+                                             $vga='GTX 1080';
+                                             break;
+                                         
+                                         default:
+                                             $vga='On Board';
+                                             break;
+                                       }
+                                 @endphp   
+
+                                 <div class="detail-option-box" origin_price="{{$detail->origin_price}}" sale_price="{{$detail->sale_price}}" quantity="{{$detail->quantity}}" detail_id="{{$detail->id}}" receipt_code="{{$detail->import_code}}">
+                                    CPU: {{$cpu}} - RAM: {{$detail->ram}}GB - VGA: {{$vga}} - Ổ CỨNG: {{$detail->disk}}GB - ĐỘ PHÂN GIẢI: {{$detail->resolution}}P - MÀU: {{$detail->color_name}} - KÍCH CỠ: {{$detail->size}} INCH
                                  </div>
                               @endforeach
                            @endif
@@ -205,12 +277,12 @@
                                  <!--  -->
                                  <div class="number input-counter">
                                      <span class="minus-btn"></span>
-                                     <input type="text" value="1" size="5"/>
+                                     <input id="buy-quantity" type="text" value="1" size="5" max="" />
                                      <span class="plus-btn"></span>
                                  </div>
                                  <!-- / -->
                               </div>
-                              <div class="pull-left"><button type="submit" class="btn btn--ys btn--xxl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</button></div>
+                              <div class="pull-left"><button id="btn-add-to-cart" class="btn btn--ys btn--xxl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</button></div>
                            </div>
                            <ul class="product-link">
                               <li class="text-right"><a href="#"><span class="icon icon-favorite_border  tooltip-link"></span><span class="text">Thêm vào yêu thích</span></a></li>
@@ -227,37 +299,8 @@
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content tab-content--ys nav-stacked">
-                           <div role="tabpanel" class="tab-pane active" id="Tab1">
-                              <p>Miêu tả</p>
-                              <div class="divider divider--md"></div>
-                              <table class="table table-params">
-                                 <tbody>
-                                    <tr>
-                                       <td class="text-right"><span class="color">PROOF</span></td>
-                                       <td>PDF Proof</td>
-                                    </tr>
-                                    <tr>
-                                       <td class="text-right"><span class="color">SAMPLES</span></td>
-                                       <td>Digital, Printed</td>
-                                    </tr>
-                                    <tr>
-                                       <td class="text-right"><span class="color">WRAPPING</span></td>
-                                       <td>Yes,  No</td>
-                                    </tr>
-                                    <tr>
-                                       <td class="text-right"><span class="color">UV GLOSS COATING</span></td>
-                                       <td>Yes</td>
-                                    </tr>
-                                    <tr>
-                                       <td class="text-right"><span class="color">SHRINK WRAPPING</span></td>
-                                       <td>No Shrink Wrapping, Shrink in 25s, Shrink in 50s, Shrink in 100s</td>
-                                    </tr>
-                                    <tr>
-                                       <td class="text-right"><span class="color">WEIGHT</span></td>
-                                       <td>0.05, 0.06, 0.07ess cards</td>
-                                    </tr>
-                                 </tbody>
-                              </table>
+                           <div role="tabpanel product-content" class="tab-pane active" id="Tab1">
+                              {!!$product->content!!}
                            </div>
                            <div role="tabpanel" class="tab-pane" id="Tab2">
                               <h5><strong class="color">CUSTOMER REVIEWS 1 ITEM(S)</strong></h5>
@@ -327,6 +370,9 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>              
       <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
       <script src="{{ asset('js/autoNumeric-min.js') }}"></script>
+      <script type="text/javascript">
+         var asset='{{ asset('/') }}';
+      </script>
       <script src="{{ asset('shop_asset/') }}/ajax/ajax-product.js"></script> 
    </body>
 </html>
