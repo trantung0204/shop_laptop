@@ -39,7 +39,7 @@
 	</li>
 	<li class="dropdown dropdown-mega-menu dropdown-two-col">
 		<span class="dropdown-toggle extra-arrow"></span>
-		<a href="{{ asset('shop/about') }}" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">LIÊN HỆ</span></a>
+		<a href="{{ asset('shop/contact') }}" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">LIÊN HỆ</span></a>
 	</li>											
 	<li class="dropdown dropdown-mega-menu">
 		<span class="dropdown-toggle extra-arrow"></span>

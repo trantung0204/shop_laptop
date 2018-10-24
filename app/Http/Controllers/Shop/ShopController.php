@@ -73,9 +73,37 @@ class ShopController extends Controller
 			$categories[$parent->name]=$item;
 		}
 		$brands=Brand::all();
-		// $category = Category::where('slug',$slug)->first();
-		// $products = Product::where('category_id',$category->id)->get();
-		return view('shop.pages.listing',compact('category','products','categories','brands'));
+		$slides=Product::where('slide',1)
+		->orderBy('id','desc')
+		->join('brands', 'products.brand_id', '=', 'brands.id')
+		->select('products.*','brands.name as brand_name')
+		->get();
+		$receiptProduct=Product::join('import_products', 'products.code', '=', 'import_products.product_code')
+			->select('products.code')
+			->where('quantity','>',0)
+			->distinct('import_products.product_code')->get();
+		$products=array();
+		foreach ($receiptProduct as $key => $product) {
+			$import_code=ImportProduct::where('product_code',$product->code)
+				->select('import_code')
+				->distinct('import_code')
+				->orderBy('import_products.id','asc')
+				->first();
+			// dd($import_code);
+
+			$products[$product->code]=Product::join('import_products', 'products.code', '=', 'import_products.product_code')
+				->where('import_products.import_code',$import_code->import_code)
+				->where('import_products.product_code',$product->code)
+				->join('brands', 'products.brand_id', '=', 'brands.id')
+				->join('images', 'images.product_id', '=', 'products.id')
+				->select('import_products.id','import_products.origin_price','import_products.sale_price','import_products.quantity','import_products.import_code','products.code','products.name','brands.name as brand_name','images.link')
+				// ->orderBy('import_products.id','asc')
+				->orderBy('import_products.sale_price','asc')
+				->first();
+		}
+		// dd($product_details);
+		return view('shop.pages.listing',compact('slides','categories','brands','products'));
+		// return view('shop.pages.product');
 	}
 	public function modalDetail($id)
 	{
