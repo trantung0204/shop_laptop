@@ -46,6 +46,7 @@
 	@include('shop.parts.mobile-navbar')			
 	<!-- /mobile menu -->
 	<!-- HEADER section -->
+	
 	<div class="header-wrapper">
 		<header id="header" class="header-layout-06">
 			<div class="container">
