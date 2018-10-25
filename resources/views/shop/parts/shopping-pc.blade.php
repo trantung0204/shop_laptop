@@ -13,8 +13,8 @@
             </ul>
             <div class="cart__bottom">
                <div class="cart__total">Tổng giỏ hàng: <span id="cart-list-total"></span></div>
-               <button class="btn btn--ys btn-checkout">KIỂM TRA <span class="icon icon--flippedX icon-reply"></span></button>
-               <a href="#" class="btn btn--ys"><span class="icon icon-shopping_basket"></span> XEM GIỎ HÀNG</a>
+               <a href="{{ asset('shop/checkout') }}" class="btn btn--ys btn-checkout">THANH TOÁN <span class="icon icon--flippedX icon-reply"></span></a>
+               {{-- <a href="#" class="btn btn--ys"><span class="icon icon-shopping_basket"></span> XEM GIỎ HÀNG</a> --}}
             </div>
          </div>
       </div>
