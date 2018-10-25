@@ -20,8 +20,8 @@ Route::prefix('shop')->group(function(){
 	Route::get('/', 'Shop\ShopController@index')->name('shop.index');
 	Route::get('listing/','Shop\ShopController@listing')->name('shop.listing');
 	Route::get('productShop/{slug}','Shop\ShopController@productShop')->name('shop.productShop');
-	Route::get('loginShop','Shop\ShopController@loginShop')->name('shop.loginShop');
-	Route::get('signupShop','Shop\ShopController@signupShop')->name('shop.signupShop');
+	// Route::get('loginShop','Shop\ShopController@loginShop')->name('shop.loginShop');
+	// Route::get('signupShop','Shop\ShopController@signupShop')->name('shop.signupShop');
 	Route::get('about','Shop\ShopController@about')->name('shop.about');
 	Route::get('contact','Shop\ShopController@contact')->name('shop.contact');
 	Route::get('guarantee','Shop\ShopController@guarantee')->name('shop.guarantee');

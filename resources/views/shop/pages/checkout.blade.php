@@ -254,7 +254,7 @@
 												<tr>												
 													<td>
 														<h5 class="order-review-table__product-name text-left text-uppercase">
-															<a href="product.html">{{$item->name}}</a>
+															<a href="">{{$item->name}}</a>
 														</h5>
 															<ul class="order-review-table__list-parameters">
 																<li>

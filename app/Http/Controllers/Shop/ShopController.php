@@ -19,17 +19,17 @@ class ShopController extends Controller
 {
 	public function index()
 	{
-		$categories=array();
-		$parents=Category::where('parent_id',null)->get();
-		foreach ($parents as $parent) {
-			$childs=Category::where('parent_id',$parent->id)->get();
-			$item=array();
-			foreach ($childs as $child) {
-				$item[$child->name]=$child;
-			}
-			$categories[$parent->name]=$item;
-		}
-		$brands=Brand::all();
+		// $categories=array();
+		// $parents=Category::where('parent_id',null)->get();
+		// foreach ($parents as $parent) {
+		// 	$childs=Category::where('parent_id',$parent->id)->get();
+		// 	$item=array();
+		// 	foreach ($childs as $child) {
+		// 		$item[$child->name]=$child;
+		// 	}
+		// 	$categories[$parent->name]=$item;
+		// }
+		// $brands=Brand::all();
 		$slides=Product::where('slide',1)
 		->orderBy('id','desc')
 		->join('brands', 'products.brand_id', '=', 'brands.id')
@@ -61,7 +61,7 @@ class ShopController extends Controller
 				->first();
 		}
 		// dd($products);
-		return view('shop.pages.home',compact('slides','categories','brands','products'));
+		return view('shop.pages.home',compact('slides','products'));
 	}
 	public function listing()
 	{
@@ -71,17 +71,6 @@ class ShopController extends Controller
 	}
 	public function productShop($slug)
 	{
-		$categories=array();
-		$parents=Category::where('parent_id',null)->get();
-		foreach ($parents as $parent) {
-			$childs=Category::where('parent_id',$parent->id)->get();
-			$item=array();
-			foreach ($childs as $child) {
-				$item[$child->name]=$child;
-			}
-			$categories[$parent->name]=$item;
-		}
-		$brands=Brand::all();
 		$product = DB::table('products')->where('slug',$slug)->first();
 
 		$images = DB::table('images')->where('product_id',$product->id)->get();
@@ -109,8 +98,6 @@ class ShopController extends Controller
 			'product' => $product,
 			'images' => $images,
 			'product_details' => $product_details,
-			'categories' => $categories,
-			'brands' => $brands,
 			'type' => $type,
 		]);
 		// return view('shop.pages.product');
@@ -129,21 +116,10 @@ class ShopController extends Controller
 	}
 	public function checkout()
 	{
-		$categories=array();
-		$parents=Category::where('parent_id',null)->get();
-		foreach ($parents as $parent) {
-			$childs=Category::where('parent_id',$parent->id)->get();
-			$item=array();
-			foreach ($childs as $child) {
-				$item[$child->name]=$child;
-			}
-			$categories[$parent->name]=$item;
-		}
-		$brands=Brand::all();
 		$cartContent=Cart::content();
 		$cartCount=Cart::count();
 		$cartTotal=Cart::total();
 		// dd($cartContent['3fdc700f7d1c6850bc9f2a6043acbbfc']->options->image);
-		return view('shop.pages.checkout',compact('categories','brands','cartContent','cartCount','cartTotal'));
+		return view('shop.pages.checkout',compact('cartContent','cartCount','cartTotal'));
 	}
 }

@@ -159,36 +159,52 @@
 					<section class="col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xl-offset-2">
 						<div class="login-form-box">
 							<h3 class="color small">ĐĂNG KÝ</h3>
-							<div class="form-group">
-								<label for="name">Tên <sup>*</sup></label>
-								<input type="text" class="form-control" id="name">
-							</div>
-							<div class="form-group">
-								<label for="name">Họ <sup>*</sup></label>
-								<input type="text" class="form-control" id="name">
-							</div>
-							<div class="form-group">
-								<label for="email">Email <sup>*</sup></label>
-								<input type="email" class="form-control" id="email">
-							</div>
-							<div class="form-group">
-								<label for="password">Mật khẩu <sup>*</sup></label>
-								<input type="password" class="form-control" id="password">
-							</div>
-							<div class="form-group">
-								<label for="repassword">Nhập lại mật khẩu <sup>*</sup></label>
-								<input type="password" class="form-control" id="repassword">
-							</div>
-							<br>
-							<div class="row">
-								<div class="col-xs-12 col-sm-6 col-md-6">
-									<button class="btn btn--ys btn--xl" onclick="location.href='#';"><span class="icon icon-person_add"></span>ĐĂNG KÝ</button>			               			
+							<form action="{{ route('register') }}" method="post">
+      							@csrf
+								<div class="form-group">
+									<label for="name">Tên <sup>*</sup></label>
+									<input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+
+	                                @if ($errors->has('name'))
+	                                    <span class="invalid-feedback" role="alert">
+	                                        <strong>{{ $errors->first('name') }}</strong>
+	                                    </span>
+	                                @endif
 								</div>
-								<div class="divider divider--md visible-xs"></div>
-								<div class="col-xs-12 col-sm-6 col-md-6">
-									<div class="pull-right note btn-top">* Bắt buộc</div>
+								<div class="form-group">
+									<label for="email">Email <sup>*</sup></label>
+									<input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+									@if ($errors->has('email'))
+	                                    <span class="invalid-feedback" role="alert">
+	                                        <strong>{{ $errors->first('email') }}</strong>
+	                                    </span>
+	                                @endif
 								</div>
-							</div>	
+								<div class="form-group">
+									<label for="password">Mật khẩu <sup>*</sup></label>
+									<input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+								</div>
+								<div class="form-group">
+									<label for="repassword">Nhập lại mật khẩu <sup>*</sup></label>
+									<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-xs-12 col-sm-6 col-md-6">
+										<button class="btn btn--ys btn--xl" onclick="location.href='#';"><span class="icon icon-person_add"></span>ĐĂNG KÝ</button>			               			
+									</div>
+									<div class="divider divider--md visible-xs"></div>
+									<div class="col-xs-12 col-sm-6 col-md-6">
+										<div class="pull-right note btn-top">* Bắt buộc</div>
+									</div>
+								</div>	
+							</form>
 						</div>
 						
 					</section>

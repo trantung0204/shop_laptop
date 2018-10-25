@@ -939,7 +939,7 @@
 		</div> --}}
 		<!-- / Modal (quickViewModal) -->
 		<!-- Modal (newsletter) -->		
-		<div class="modal  modal--bg fade"  id="newsletterModal" data-pause=2000>
+		{{-- <div class="modal  modal--bg fade"  id="newsletterModal" data-pause=2000>
 		  <div class="modal-dialog white-modal">
 		    <div class="modal-content modal-md">
 		      <div class="modal-bg-image bottom-right"> 
@@ -975,7 +975,7 @@
 		      </div>
 		    </div>
 		  </div>
-		</div>
+		</div> --}}
 		<!-- / Modal (newsletter) -->
 		<!--================== /modal ==================-->
 
