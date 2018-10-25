@@ -62,9 +62,20 @@ class ShopController extends Controller
 	}
 	public function listing()
 	{
+		$categories=array();
+		$parents=Category::where('parent_id',null)->get();
+		foreach ($parents as $parent) {
+			$childs=Category::where('parent_id',$parent->id)->get();
+			$item=array();
+			foreach ($childs as $child) {
+				$item[$child->name]=$child;
+			}
+			$categories[$parent->name]=$item;
+		}
+		$brands=Brand::all();
 		// $category = Category::where('slug',$slug)->first();
 		// $products = Product::where('category_id',$category->id)->get();
-		return view('shop.pages.listing',compact('category','products'));
+		return view('shop.pages.listing',compact('categories','products','brands','slides'));
 	}
 	public function productShop($slug)
 	{
@@ -114,18 +125,104 @@ class ShopController extends Controller
 	}
 	public function loginShop()
 	{
-		return view('shop.pages.login');
+		$categories=array();
+		$parents=Category::where('parent_id',null)->get();
+		foreach ($parents as $parent) {
+			$childs=Category::where('parent_id',$parent->id)->get();
+			$item=array();
+			foreach ($childs as $child) {
+				$item[$child->name]=$child;
+			}
+			$categories[$parent->name]=$item;
+		}
+		$brands=Brand::all();
+		// $category = Category::where('slug',$slug)->first();
+		// $products = Product::where('category_id',$category->id)->get();
+		return view('shop.pages.login',compact('categories','products','brands','slides'));
 	}
 	public function signupShop()
 	{
-		return view('shop.pages.signup');
+		$categories=array();
+		$parents=Category::where('parent_id',null)->get();
+		foreach ($parents as $parent) {
+			$childs=Category::where('parent_id',$parent->id)->get();
+			$item=array();
+			foreach ($childs as $child) {
+				$item[$child->name]=$child;
+			}
+			$categories[$parent->name]=$item;
+		}
+		$brands=Brand::all();
+		// $category = Category::where('slug',$slug)->first();
+		// $products = Product::where('category_id',$category->id)->get();
+		return view('shop.pages.signup',compact('categories','products','brands','slides'));
 	}
 	public function about()
 	{
-		return view('shop.pages.about');
+		$categories=array();
+		$parents=Category::where('parent_id',null)->get();
+		foreach ($parents as $parent) {
+			$childs=Category::where('parent_id',$parent->id)->get();
+			$item=array();
+			foreach ($childs as $child) {
+				$item[$child->name]=$child;
+			}
+			$categories[$parent->name]=$item;
+		}
+		$brands=Brand::all();
+		// $category = Category::where('slug',$slug)->first();
+		// $products = Product::where('category_id',$category->id)->get();
+		return view('shop.pages.about',compact('categories','products','brands','slides'));
 	}
 	public function checkout()
 	{
-		return view('shop.pages.checkout');
+		$categories=array();
+		$parents=Category::where('parent_id',null)->get();
+		foreach ($parents as $parent) {
+			$childs=Category::where('parent_id',$parent->id)->get();
+			$item=array();
+			foreach ($childs as $child) {
+				$item[$child->name]=$child;
+			}
+			$categories[$parent->name]=$item;
+		}
+		$brands=Brand::all();
+		// $category = Category::where('slug',$slug)->first();
+		// $products = Product::where('category_id',$category->id)->get();
+		return view('shop.pages.checkout',compact('categories','products','brands','slides'));
+	}
+	public function shoppingCart()
+	{
+		$categories=array();
+		$parents=Category::where('parent_id',null)->get();
+		foreach ($parents as $parent) {
+			$childs=Category::where('parent_id',$parent->id)->get();
+			$item=array();
+			foreach ($childs as $child) {
+				$item[$child->name]=$child;
+			}
+			$categories[$parent->name]=$item;
+		}
+		$brands=Brand::all();
+		// $category = Category::where('slug',$slug)->first();
+		// $products = Product::where('category_id',$category->id)->get();
+		return view('shop.pages.shopping',compact('categories','products','brands','slides'));
+	}
+	public function guarantee()
+	{
+		$categories=array();
+		$parents=Category::where('parent_id',null)->get();
+		foreach ($parents as $parent) {
+			$childs=Category::where('parent_id',$parent->id)->get();
+			$item=array();
+			foreach ($childs as $child) {
+				$item[$child->name]=$child;
+			}
+			$categories[$parent->name]=$item;
+		}
+		$brands=Brand::all();
+		// $category = Category::where('slug',$slug)->first();
+		// $products = Product::where('category_id',$category->id)->get();
+		return view('shop.pages.guarantee',compact('categories','products','brands','slides'));
 	}
 }

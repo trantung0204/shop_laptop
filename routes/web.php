@@ -31,6 +31,7 @@ Route::prefix('shop')->group(function(){
 	Route::get('card/showCart','Shop\CartController@showCart')->name('cart.showCart');
 	Route::get('card/delItem/{rowId}','Shop\CartController@delItem')->name('cart.delItem');
 	Route::get('card/editItem/{rowId}/{qty}','Shop\CartController@editItem')->name('cart.editItem');
+	Route::get('shoppingCart','Shop\ShopController@shoppingCart')->name('shop.shopping');
 });
 
 Route::get('/', function(){

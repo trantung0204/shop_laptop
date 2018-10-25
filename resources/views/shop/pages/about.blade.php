@@ -41,7 +41,9 @@
 	    <div class="back-to-top"><span class="icon-keyboard_arrow_up"></span></div>
 	    <!-- /Back to top -->
 	    <!-- mobile menu -->
-		@include('shop.parts.mobile-navbar')	
+	    <div class="hidden">
+	    	@include('shop.parts.mobile-navbar')
+	    </div>	
 	    <!-- /mobile menu -->
 		<!-- HEADER section -->
 		<div class="header-wrapper">

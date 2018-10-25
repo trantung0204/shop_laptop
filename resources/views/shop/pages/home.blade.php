@@ -746,74 +746,10 @@
 				user choices or actions.
 			</p>
 		</div>
-		<div id="compareSlide" class="hidden-xs">
-			<div class="container">
-				<div class="compareSlide__top">
-					Compare
-				</div>
-				<a class="compareSlide__close icon icon-close">
-				</a>
-				<div class="compared-product-row">
-					<div class="compared-product">
-						<a href="#" class="compared-product__delete icon icon-delete"></a>
-						<div class="compared-product__image"><a href="#"><img src="images/product/product-1.jpg" alt=""/></a></div>
-						<a href="#" class="compared-product__name">Quis nostrud exercitation ullamco labori.</a>
-					</div>
-					<div class="compared-product">
-						<a href="#" class="compared-product__delete icon icon-delete"></a>
-						<div class="compared-product__image"><a href="#"><img src="images/product/product-1.jpg" alt=""/></a></div>
-						<a href="#" class="compared-product__name">Quis nostrud exercitation ullamco labori.</a>
-					</div>
-					<div class="compared-product">
-						<a href="#" class="compared-product__delete icon icon-delete"></a>
-						<div class="compared-product__image"><a href="#"><img src="images/product/product-1.jpg" alt=""/></a></div>
-						<a href="#" class="compared-product__name">Quis nostrud exercitation ullamco labori.</a>
-					</div>
-					<div class="compared-product">
-						<a href="#" class="compared-product__delete icon icon-delete"></a>
-						<div class="compared-product__image"><a href="#"><img src="images/product/product-1.jpg" alt=""/></a></div>
-						<a href="#" class="compared-product__name">Quis nostrud exercitation ullamco labori.</a>
-					</div>
-					<div class="compared-product">
-						<a href="#" class="compared-product__delete icon icon-delete"></a>
-						<div class="compared-product__image"><a href="#"><img src="images/product/product-1.jpg" alt=""/></a></div>
-						<a href="#" class="compared-product__name">Quis nostrud exercitation ullamco labori.</a>
-					</div>
-					<div class="compared-product">
-						<a href="#" class="compared-product__delete icon icon-delete"></a>
-						<div class="compared-product__image"><a href="#"><img src="images/product/product-1.jpg" alt=""/></a></div>
-						<a href="#" class="compared-product__name">Quis nostrud exercitation ullamco labori.</a>
-					</div>
-				</div>
-				<div class="compareSlide__bot">
-					<a href="#" class="clear-all icon icon-delete"><span>Clear All</span></a>
-					<a href="#" class="btn btn--ys btn-compare"><span class="icon icon-shopping_basket"></span> Compare</a>
-				</div>
-			</div>
-		</div>
 		<!-- Button trigger modal -->
 	  
 
 		<!--================== modal ==================-->
-		<!-- modalAddToCart -->
-		<div class="modal  fade"  id="modalAddToCart" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog white-modal modal-sm">
-		    <div class="modal-content ">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="icon icon-clear"></span></button>
-		      </div>
-		      <div class="modal-body">
-		        <div class="text-center">
-		        	"Mauris lacinia lectus" added to cart successfully! 
-		        </div>
-		      </div>
-		      <div class="modal-footer text-center">		       	
-		        <a href="shopping-cart-right-column.html" class="btn btn--ys btn--full btn--lg">go to cart</a>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		<!-- /modalAddToCart -->
 		<!-- modalLoginForm-->
 		<div class="modal  fade"  id="modalLoginForm" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog white-modal modal-sm">

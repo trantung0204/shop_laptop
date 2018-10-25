@@ -1,92 +1,60 @@
 <nav id="off-canvas-menu">				
-	<ul class="expander-list">				
+	<ul class="expander-list">
+	@if (isset($categories))
 		<li>
 			<span class="name">
 				<span class="expander">-</span>
-				<a href="index.html"><span class="act-underline">DANH SÁCH</span></a>
+				<a href="listing.html"><span class="act-underline">DANH SÁCH</span></a>
 			</span>
-		</li>					
+			<ul class="multicolumn-level">
+				@foreach ($categories  as $key => $category)
+				<li>
+					<span class="name">
+						<span class="expander">-</span>
+						<a class="megamenu__subtitle" href="listing-layout11.html">	
+							<span>{{$key}}</span>
+						</a>
+					</span>
+					<ul class="image-links-level-3 megamenu__submenu">
+						@foreach ($category as $key2 => $child)
+						<li class="level3"><a href="#" data-id="{{$child->id}}">{{$key2}}</a></li>
+						@endforeach									
+					</ul>
+				</li>
+				@endforeach
+			</ul>
+		</li>
+	@endif
+	@if (isset($brands))					
 		<li>
 			<span class="name">
 				<span class="expander">-</span>
 				<a href="listing.html"><span class="act-underline">HÃNG</span></a>
 			</span>	
-								
+			<ul class="multicolumn-level">
+				@foreach ($brands  as $brand)
+					<li><a href="#" data-id="{{$brand->id}}">{{$brand->name}}</a></li>
+				@endforeach
+			</ul>					
 		</li>
+	@endif
 		<li>
 			<span class="name">
 				<span class="expander">-</span>
-				<a href="product-layout11.html"><span class="act-underline"><span class="act-underline">BẢO HÀNH</span></span></a>
+				<a href="{{ asset('shop/guarantee') }}"><span class="act-underline"><span class="act-underline">BẢO HÀNH</span></span></a>
 			</span>
 		</li>
 		<li>
 			<span class="name">
 				<span class="expander">-</span>
-				<a href="blog-layout-1.html"><span class="act-underline">LIÊN HỆ</span></a>
+				<a href="{{ asset('shop/about') }}"><span class="act-underline">LIÊN HỆ</span></a>
 			</span>
 		</li>								
 		<li>
 			<span class="name">
 				<span class="expander">-</span>
-				<a href="listing.html"><span class="act-underline">SẢN PHẨM<span class="badge badge--menu badge--color">SALE</span></span></a>
+				<a href="{{ asset('shop/listing') }}"><span class="act-underline">SẢN PHẨM<span class="badge badge--menu badge--color">SALE</span></span></a>
 			</span>
-			<ul class="multicolumn-level">
-				<li>
-					<span class="name">
-						<span class="expander">-</span>
-						<a class="megamenu__subtitle" href="listing-layout11.html">										
-							<span>Laptops</span>
-						</a>
-					</span>
-					<ul class="image-links-level-3 megamenu__submenu">									
-						<li class="level3"><a href="listing-layout11.html">MaciBooks</a></li>									
-						<li class="level3"><a href="listing-layout11.html">Chromebooks <span class="badge badge--menu badge--color">SALE</span></a></li>
-						<li class="level3"><a href="listing-layout11.html">Gaming Laptops</a></li>
-						<li class="level3"><a href="listing-layout11.html">Business Laptops</a></li>									
-					</ul>
-				</li>
-				<li>
-					<span class="name">
-						<span class="expander">-</span>
-						<a class="megamenu__subtitle" href="listing-layout11.html">										
-							<span>Phones</span>
-						</a>
-					</span>
-					<ul class="image-links-level-3 megamenu__submenu">									
-						<li class="level3"><a href="listing-layout11.html">Cellphones</a></li>									
-						<li class="level3"><a href="listing-layout11.html">Cell Phones with Plans</a></li>
-						<li class="level3"><a href="listing-layout11.html">No-Contract Phones</a></li>
-						<li class="level3"><a href="listing-layout11.html">Accesories</a></li>									
-					</ul>
-				</li>
-				<li>
-					<span class="name">
-						<span class="expander">-</span>
-						<a class="megamenu__subtitle" href="listing-layout11.html">										
-							<span>Tablets</span>
-						</a>
-					</span>
-					<ul class="image-links-level-3 megamenu__submenu">									
-						<li class="level3"><a href="listing-layout11.html">2-in-1s</a></li>									
-						<li class="level3"><a href="listing-layout11.html">Ipadi & Tablets</a></li>
-						<li class="level3"><a href="listing-layout11.html">Kids Tablets</a></li>																		
-					</ul>
-				</li>
-				<li>
-					<span class="name">
-						<span class="expander">-</span>
-						<a class="megamenu__subtitle" href="listing-layout11.html">										
-							<span>Smartwatches</span>
-						</a>
-					</span>
-					<ul class="image-links-level-3 megamenu__submenu">									
-						<li class="level3"><a href="listing-layout11.html">Smartwatch</a></li>									
-						<li class="level3"><a href="listing-layout11.html">Watch</a></li>
-						<li class="level3"><a href="listing-layout11.html">Watch Sport</a></li>																		
-					</ul>
-				</li>
-			</ul>
 		</li>
-		
 	</ul>
 </nav>
