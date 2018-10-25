@@ -61,6 +61,11 @@ class Product extends Model
     {
         Return Category::find($this->category_id)->parent_id;
     }
+
+    public static function type($id)
+    {
+        Return Category::find(Product::find($id)->category_id)->parent_id;
+    }
     // public function user()
     // {
     //  return $this->belongsTo('App\User','user_id','id');

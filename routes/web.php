@@ -25,9 +25,12 @@ Route::prefix('shop')->group(function(){
 	Route::get('about','Shop\ShopController@about')->name('shop.about');
 	Route::get('contact','Shop\ShopController@contact')->name('shop.contact');
 	Route::get('guarantee','Shop\ShopController@guarantee')->name('shop.guarantee');
+	Route::get('checkout','Shop\ShopController@checkout')->name('shop.checkout');
 	Route::post('card/add','Shop\CartController@addProduct')->name('cart.add');
 	Route::get('card/test','Shop\CartController@testCart')->name('cart.test');
 	Route::get('card/showCart','Shop\CartController@showCart')->name('cart.showCart');
+	Route::get('card/delItem/{rowId}','Shop\CartController@delItem')->name('cart.delItem');
+	Route::get('card/editItem/{rowId}/{qty}','Shop\CartController@editItem')->name('cart.editItem');
 });
 
 Route::get('/', function(){

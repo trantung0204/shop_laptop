@@ -24,21 +24,29 @@ $(document).ready(function () {
 
 	$(document).on('click','#btn-add-to-cart',function () {
 		// alert(asset+'card/add');
-		$.ajax({
-			type: 'post',
-			url: asset+'shop/card/add',
-			data: {
+		if ($(this).attr('data-type')==1) {
+			var datas={
 				receipt_code: $(this).attr('receipt_code'),
 				detail_id: $(this).attr('detail_id'),
 				buy_quantity: $('#buy-quantity').val(),
-			},	
+			}
+		}else{
+			var datas={
+				product_code: $(this).attr('product_id'),
+				buy_quantity: $('#buy-quantity').val(),
+			}
+		}
+		$.ajax({
+			type: 'post',
+			url: asset+'shop/card/add',
+			data: datas,	
 
 			success: function (response) {
-				console.log(response);
+				// console.log(response);
 				if (response.error) {
 					toastr.warning(response.msg);
 				}else{
-					toastr.success(response.msg);
+					// toastr.success(response.msg);
 					showCart();
 				}
 				
@@ -47,26 +55,28 @@ $(document).ready(function () {
 			}
 		})
 	})
+	$(document).on('change','.edit-qty-item',function () {
+		// alert(asset+'card/add');
+		$.ajax({
+			type: 'get',
+			url: asset+'shop/card/editItem/'+$(this).attr('data-row-id')+'/'+$(this).val(),
+
+			success: function (response) {
+				showCart();
+			},
+			error: function (error) {
+			}
+		})
+	})
+
 	$(document).on('click','.remove-item',function () {
 		// alert(asset+'card/add');
 		$.ajax({
 			type: 'get',
-			url: asset+'shop/card/removeItem',
-			data: {
-				receipt_code: $(this).attr('receipt_code'),
-				detail_id: $(this).attr('detail_id'),
-				buy_quantity: $('#buy-quantity').val(),
-			},	
+			url: asset+'shop/card/delItem/'+$(this).attr('data-row-id'),
 
 			success: function (response) {
-				console.log(response);
-				if (response.error) {
-					toastr.warning(response.msg);
-				}else{
-					toastr.success(response.msg);
-					showCart();
-				}
-				
+				showCart();
 			},
 			error: function (error) {
 			}
@@ -79,11 +89,10 @@ $(document).ready(function () {
 			url: asset+'shop/card/showCart',
 
 			success: function (response) {
-				// var items=JSON.stringify(response);
-				console.log(response);
 				$('#pc-cart-list').empty();
 				$.each(response.content,function( key, val ) {
-					$('#pc-cart-list').append(`
+					var html=``;
+					html+=`
 						<li class="cart__item">
 			               <div class="cart__item__image pull-left">
 			               	 <a href="#">
@@ -92,7 +101,6 @@ $(document).ready(function () {
 			               </div>
 			               <div class="cart__item__control">
 			                  <div class="cart__item__delete"><a data-row-id="`+val.rowId+`" class="remove-item icon icon-delete"><span>XOÁ</span></a></div>
-			                  <div class="cart__item__edit"><a data-row-id="`+val.rowId+`" class="icon icon-edit"><span>SỬA</span></a></div>
 			               </div>
 			               <div class="cart__item__info">
 			                  <div class="cart__item__info__title">
@@ -101,11 +109,13 @@ $(document).ready(function () {
 			                  <div class="cart__item__info__price"><span class="info-label">Giá bán:</span>
 			                  		<span class="item-price-`+key+`"></span></div>
 			                  <div class="cart__item__info__qty"><span class="info-label">Số lượng:</span>
-			                  <input type="text" class="input--ys" value='`+val.qty+`' /></div>
+			                  <input data-row-id="`+val.rowId+`" type="number" class="input--ys edit-qty-item" value='`+val.qty+`' /></div>
 			                  <div class="cart__item__info__details">
 			                     <div class='multitooltip'>
-			                        <a href="#">Chi tiết</a>
-			                        <div class="tip on-bottom">
+			                        `;
+			        if (val.options.color!=null) {
+			        	html+=`		<a href="#">Chi tiết</a>
+			        				<div class="tip on-bottom">
 			                           <span><strong>Màu:</strong>`+val.options.color+`</span>
 			                           <span><strong>CPU:</strong>`+val.options.cpu+`</span>
 			                           <span><strong>RAM:</strong>`+val.options.ram+` GB</span>
@@ -113,16 +123,20 @@ $(document).ready(function () {
 			                           <span><strong>Ổ cứng:</strong>`+val.options.disk+` GB</span>
 			                           <span><strong>Kích thước:</strong>`+val.options.size+` Inch</span>
 			                           <span><strong>Độ phân giải:</strong>`+val.options.resolution+`p</span>
-			                        </div>
+			                        </div>`;
+			        	
+			        }
+			        html+=`
 			                     </div>
 			                  </div>
 			               </div>
-			            </li>`);
+			            </li>`
+					$('#pc-cart-list').append(html);
 					$(".item-price-"+key).autoNumeric('init', {aSign:' VNĐ', pSign:'s' ,mDec: '0'  });
 					$(".item-price-"+key).autoNumeric('set', val.price);
 				})
 				$('#cart-list-total').text(response.total+" VNĐ");
-				$('#cart-list-count').text(response.count);
+				$('.cart-list-count').text(response.count);
 			},
 			error: function (error) {
 			}
