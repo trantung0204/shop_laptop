@@ -62,20 +62,9 @@ class ShopController extends Controller
 	}
 	public function listing()
 	{
-		$categories=array();
-		$parents=Category::where('parent_id',null)->get();
-		foreach ($parents as $parent) {
-			$childs=Category::where('parent_id',$parent->id)->get();
-			$item=array();
-			foreach ($childs as $child) {
-				$item[$child->name]=$child;
-			}
-			$categories[$parent->name]=$item;
-		}
-		$brands=Brand::all();
 		// $category = Category::where('slug',$slug)->first();
 		// $products = Product::where('category_id',$category->id)->get();
-		return view('shop.pages.listing',compact('category','products','categories','brands'));
+		return view('shop.pages.listing',compact('category','products'));
 	}
 	public function productShop($slug)
 	{
@@ -93,17 +82,24 @@ class ShopController extends Controller
 		$product = DB::table('products')->where('slug',$slug)->first();
 
 		$images = DB::table('images')->where('product_id',$product->id)->get();
-		$detailList=ImportProduct::select('import_products.product_details_id')
-			->where('quantity','>',0)
-			->where('product_code',$product->code)
-			->distinct('import_products.product_details_id')->get();
-		$product_details=array();
-		foreach ($detailList as $detail) {
-			$product_details[$detail->product_details_id]=ImportProduct::join('product_details', 'product_details.id', '=', 'import_products.product_details_id')
-			    ->join('sizes', 'product_details.size_id', '=', 'sizes.id')
-			    ->join('colors', 'product_details.color_id', '=', 'colors.id')
-				->where('import_products.product_details_id',$detail->product_details_id)
-				->select('colors.name as color_name','sizes.size','product_details.id','product_details.cpu','product_details.ram','product_details.disk','product_details.vga','product_details.resolution','import_products.origin_price','import_products.sale_price','import_products.quantity','import_products.import_code')->first();
+		
+		if (Product::type($product->id)==2) {
+			$type=2;
+			$product_details=ImportProduct::where('product_code',$product->code)->where('quantity','>',0)->first();
+		}else{
+			$type=1;
+			$product_details=array();
+			$detailList=ImportProduct::select('import_products.product_details_id')
+				->where('quantity','>',0)
+				->where('product_code',$product->code)
+				->distinct('import_products.product_details_id')->get();
+			foreach ($detailList as $detail) {
+				$product_details[$detail->product_details_id]=ImportProduct::join('product_details', 'product_details.id', '=', 'import_products.product_details_id')
+				    ->join('sizes', 'product_details.size_id', '=', 'sizes.id')
+				    ->join('colors', 'product_details.color_id', '=', 'colors.id')
+					->where('import_products.product_details_id',$detail->product_details_id)
+					->select('colors.name as color_name','sizes.size','product_details.id','product_details.cpu','product_details.ram','product_details.disk','product_details.vga','product_details.resolution','import_products.origin_price','import_products.sale_price','import_products.quantity','import_products.import_code')->first();
+			}
 		}
 		// dd($product_details);
 		return view('shop.pages.product',[
@@ -112,82 +108,24 @@ class ShopController extends Controller
 			'product_details' => $product_details,
 			'categories' => $categories,
 			'brands' => $brands,
+			'type' => $type,
 		]);
 		// return view('shop.pages.product');
 	}
 	public function loginShop()
 	{
-		$categories=array();
-		$parents=Category::where('parent_id',null)->get();
-		foreach ($parents as $parent) {
-			$childs=Category::where('parent_id',$parent->id)->get();
-			$item=array();
-			foreach ($childs as $child) {
-				$item[$child->name]=$child;
-			}
-			$categories[$parent->name]=$item;
-		}
-		$brands=Brand::all();
-		return view('shop.pages.login',compact('categories','brands'));
+		return view('shop.pages.login');
 	}
 	public function signupShop()
 	{
-		$categories=array();
-		$parents=Category::where('parent_id',null)->get();
-		foreach ($parents as $parent) {
-			$childs=Category::where('parent_id',$parent->id)->get();
-			$item=array();
-			foreach ($childs as $child) {
-				$item[$child->name]=$child;
-			}
-			$categories[$parent->name]=$item;
-		}
-		$brands=Brand::all();
-		return view('shop.pages.signup',compact('categories','brands'));
+		return view('shop.pages.signup');
 	}
 	public function about()
 	{
-		$categories=array();
-		$parents=Category::where('parent_id',null)->get();
-		foreach ($parents as $parent) {
-			$childs=Category::where('parent_id',$parent->id)->get();
-			$item=array();
-			foreach ($childs as $child) {
-				$item[$child->name]=$child;
-			}
-			$categories[$parent->name]=$item;
-		}
-		$brands=Brand::all();
-		return view('shop.pages.about',compact('categories','brands'));
+		return view('shop.pages.about');
 	}
-	public function contact()
+	public function checkout()
 	{
-		$categories=array();
-		$parents=Category::where('parent_id',null)->get();
-		foreach ($parents as $parent) {
-			$childs=Category::where('parent_id',$parent->id)->get();
-			$item=array();
-			foreach ($childs as $child) {
-				$item[$child->name]=$child;
-			}
-			$categories[$parent->name]=$item;
-		}
-		$brands=Brand::all();
-		return view('shop.pages.contact',compact('categories','brands'));
-	}
-	public function guarantee()
-	{
-		$categories=array();
-		$parents=Category::where('parent_id',null)->get();
-		foreach ($parents as $parent) {
-			$childs=Category::where('parent_id',$parent->id)->get();
-			$item=array();
-			foreach ($childs as $child) {
-				$item[$child->name]=$child;
-			}
-			$categories[$parent->name]=$item;
-		}
-		$brands=Brand::all();
-		return view('shop.pages.guarantee',compact('categories','brands'));
+		return view('shop.pages.checkout');
 	}
 }

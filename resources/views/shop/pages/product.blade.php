@@ -42,6 +42,28 @@
          #Tab1 img{
             width: 100%;
          }
+         .cart__item__delete{
+            cursor: pointer;
+         }
+         .cart-list-count{
+            transition: all 0.1s;
+         }
+         /*.cart-noti:hover .cart-list-count{
+            animation: animateNoti 0.5s infinite;
+            animation-timing-function: ease-out;
+            animation-iteration-count: 1;
+         }
+         @keyframes animateNoti {
+           0% {
+             transform: scale(1);
+           }
+           50% {
+             transform: scale(1.2);
+           }
+           100% {
+             transform: scale(1);
+           }
+         }*/
       </style>
       <script src="external/modernizr/modernizr.js"></script>
    </head>
@@ -184,14 +206,16 @@
                         <div class="product-info col-sm-6 col-md-6 col-lg-6 col-xl-6">
                            <div class="wrapper hidden-xs">
                               <div class="product-info__sku pull-left">Mã sản phẩm: <strong>{{$product->code}}</strong></div>
-                              <div class="product-info__availability pull-right">Trạng thái:   <strong class="color">Còn <span class="quantity"></span> sản phẩm</strong></div>
+                              <div class="product-info__availability pull-right">Trạng thái:   <strong class="color">Còn <span class="quantity">@if($type==2){{$product_details->quantity}}
+                              @endif</span> sản phẩm</strong></div>
                            </div>
                            <div class="product-info__title">
                               <h2>{{$product->name}}</h2>
                            </div>
                            <div class="wrapper visible-xs">
                               <div class="product-info__sku pull-left">Mã sản phẩm: <strong>{{$product->code}}</strong></div>
-                              <div class="product-info__availability pull-right">Trạng thái:   <strong class="color">Còn <span class="quantity"></span> sản phẩm</strong></div>
+                              <div class="product-info__availability pull-right">Trạng thái:   <strong class="color">Còn <span class="quantity">@if($type==2){{$product_details->quantity}}
+                              @endif </span> sản phẩm</strong></div>
                            </div>
                            <div class="visible-xs">
                               <div class="clearfix"></div>
@@ -205,13 +229,13 @@
                                  @endforeach
                               </ul>
                            </div>
-                           <div class="price-box product-info__price"><span class="price-box__new product_price sale_price"></span> <span class="price-box__old product_price origin_price"></span></div>
+                           <div class="price-box product-info__price"><span class="price-box__new product_price sale_price">@if($type==2){{$product_details->sale_price}}@endif</span><span class="price-box__old product_price origin_price">@if($type==2){{$product_details->origin_price}}@endif</span></div>
                            <div class="product-info__review">
                               <div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
                               <a href="#">1 Đánh giá</a> <a href="#">Thêm đánh giá của bạn</a> 
                            </div>
+                           @if ($type==1)
                            <div class="divider divider--xs product-info__divider hidden-xs"></div>
-                           @if (isset($product_details))
                               @foreach ($product_details as $detail)
                                  @php
                                     switch ($detail->cpu) {
@@ -262,6 +286,7 @@
                                              $vga='On Board';
                                              break;
                                        }
+
                                  @endphp   
 
                                  <div class="detail-option-box" origin_price="{{$detail->origin_price}}" sale_price="{{$detail->sale_price}}" quantity="{{$detail->quantity}}" detail_id="{{$detail->id}}" receipt_code="{{$detail->import_code}}">
@@ -282,7 +307,7 @@
                                  </div>
                                  <!-- / -->
                               </div>
-                              <div class="pull-left"><button id="btn-add-to-cart" class="btn btn--ys btn--xxl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</button></div>
+                              <div class="pull-left"><button id="btn-add-to-cart" @if($type==2)product_id="{{$product_details->product_code}}"@endif data-type="{{$type}}" class="btn btn--ys btn--xxl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</button></div>
                            </div>
                            <ul class="product-link">
                               <li class="text-right"><a href="#"><span class="icon icon-favorite_border  tooltip-link"></span><span class="text">Thêm vào yêu thích</span></a></li>
