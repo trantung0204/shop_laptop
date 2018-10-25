@@ -28,6 +28,7 @@ Route::prefix('shop')->group(function(){
 	Route::get('about','Shop\ShopController@about')->name('shop.about');
 	Route::get('contact','Shop\ShopController@contact')->name('shop.contact');
 	Route::get('guarantee','Shop\ShopController@guarantee')->name('shop.guarantee');
+	Route::get('checkout','Shop\ShopController@checkout')->name('shop.checkout');
 });
 
 Route::get('/', function(){

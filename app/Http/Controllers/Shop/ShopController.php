@@ -101,7 +101,7 @@ class ShopController extends Controller
 				->orderBy('import_products.sale_price','asc')
 				->first();
 		}
-		// dd($product_details);
+		//dd($products);
 		return view('shop.pages.listing',compact('slides','categories','brands','products'));
 		// return view('shop.pages.product');
 	}
@@ -320,5 +320,20 @@ class ShopController extends Controller
 		}
 		$brands=Brand::all();
 		return view('shop.pages.guarantee',compact('categories','brands'));
+	}
+	public function checkout()
+	{
+		$categories=array();
+		$parents=Category::where('parent_id',null)->get();
+		foreach ($parents as $parent) {
+			$childs=Category::where('parent_id',$parent->id)->get();
+			$item=array();
+			foreach ($childs as $child) {
+				$item[$child->name]=$child;
+			}
+			$categories[$parent->name]=$item;
+		}
+		$brands=Brand::all();
+		return view('shop.pages.checkout',compact('categories','brands'));
 	}
 }
