@@ -11,10 +11,10 @@
 |
 */
 // Route::get('shop','TestController@shop')->name('shop');
-Route::get('home','TestController@home')->name('home');
-Route::get('listing','TestController@listing')->name('listing');
-Route::get('productShop','TestController@productShop')->name('productShop');
-Route::get('checkout','TestController@checkout')->name('checkout');
+// Route::get('home','TestController@home')->name('home');
+// Route::get('listing','TestController@listing')->name('listing');
+// Route::get('productShop','TestController@productShop')->name('productShop');
+// Route::get('checkout','TestController@checkout')->name('checkout');
 
 Route::prefix('shop')->group(function(){
 	Route::get('/', 'Shop\ShopController@index')->name('shop.index');

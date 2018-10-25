@@ -112,10 +112,11 @@ $(document).ready(function () {
 			                  <input data-row-id="`+val.rowId+`" type="number" class="input--ys edit-qty-item" value='`+val.qty+`' /></div>
 			                  <div class="cart__item__info__details">
 			                     <div class='multitooltip'>
-			                        `;
-			        if (val.options.color!=null) {
-			        	html+=`		<a href="#">Chi tiết</a>
+			                        <a href="#">Chi tiết</a>
 			        				<div class="tip on-bottom">
+			        					<span><strong>Hiệu:</strong>`+val.options.brand+`</span>`;
+			        if (val.options.color!=null) {
+			        	html+=`		
 			                           <span><strong>Màu:</strong>`+val.options.color+`</span>
 			                           <span><strong>CPU:</strong>`+val.options.cpu+`</span>
 			                           <span><strong>RAM:</strong>`+val.options.ram+` GB</span>
@@ -123,10 +124,10 @@ $(document).ready(function () {
 			                           <span><strong>Ổ cứng:</strong>`+val.options.disk+` GB</span>
 			                           <span><strong>Kích thước:</strong>`+val.options.size+` Inch</span>
 			                           <span><strong>Độ phân giải:</strong>`+val.options.resolution+`p</span>
-			                        </div>`;
+			                        `;
 			        	
 			        }
-			        html+=`
+			        html+=`			</div>
 			                     </div>
 			                  </div>
 			               </div>

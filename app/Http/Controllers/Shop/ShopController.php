@@ -13,6 +13,7 @@ use App\Color;
 use App\Size;
 use App\Brand;
 use App\ImportProduct;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ShopController extends Controller
 {
@@ -32,7 +33,9 @@ class ShopController extends Controller
 		$slides=Product::where('slide',1)
 		->orderBy('id','desc')
 		->join('brands', 'products.brand_id', '=', 'brands.id')
+		->join('import_products', 'import_products.product_code', '=', 'products.code')
 		->select('products.*','brands.name as brand_name')
+		->distinct('import_products.product_code')
 		->get();
 		$receiptProduct=Product::join('import_products', 'products.code', '=', 'import_products.product_code')
 			->select('products.code')
@@ -126,6 +129,21 @@ class ShopController extends Controller
 	}
 	public function checkout()
 	{
-		return view('shop.pages.checkout');
+		$categories=array();
+		$parents=Category::where('parent_id',null)->get();
+		foreach ($parents as $parent) {
+			$childs=Category::where('parent_id',$parent->id)->get();
+			$item=array();
+			foreach ($childs as $child) {
+				$item[$child->name]=$child;
+			}
+			$categories[$parent->name]=$item;
+		}
+		$brands=Brand::all();
+		$cartContent=Cart::content();
+		$cartCount=Cart::count();
+		$cartTotal=Cart::total();
+		// dd($cartContent['3fdc700f7d1c6850bc9f2a6043acbbfc']->options->image);
+		return view('shop.pages.checkout',compact('categories','brands','cartContent','cartCount','cartTotal'));
 	}
 }

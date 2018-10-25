@@ -28,7 +28,7 @@ class CartController extends Controller
     	// }
     	// $item=Cart::content()->where('id', 15);
     	// return $item;
-    	return Cart::content();
+    	return Cart::total();
     }
     public function addProduct(Request $request)
     {
@@ -38,12 +38,12 @@ class CartController extends Controller
     	if (isset($request['product_code'])) {
     		$productDetail=ImportProduct::join('products', 'import_products.product_code', '=', 'products.code')
     			    ->join('product_details', 'product_details.id', '=', 'import_products.product_details_id')
+    			    ->join('brands', 'brands.id', '=', 'products.brand_id')
     		        ->where('import_products.product_code',$request['product_code'])
     		        ->where('import_products.quantity','>',0)
-    		        ->select('import_products.origin_price','import_products.sale_price','import_products.quantity','products.name','products.code','products.id as product_id','product_details.id')
+    		        ->select('import_products.origin_price','import_products.sale_price','import_products.quantity','products.name','products.code','products.id as product_id','product_details.id','brands.name as brand_name')
     		        ->first();
     		$image= Image::where('product_id',$productDetail->product_id)->select('link')->first()->link;
-	        $image=str_replace('public',asset('storage'),$image);
 	        $image=str_replace('public',asset('storage'),$image);
 
 	        if ($productDetail->quantity<$request['buy_quantity']) {
@@ -58,6 +58,7 @@ class CartController extends Controller
 				'qty' => $request['buy_quantity'], 
 				'price' => $productDetail->sale_price, 
 				'options' => [
+					'brand' => $productDetail->brand_name,
 					'size' => null,
 					'color' => null,
 					'cpu' => null,
@@ -75,10 +76,11 @@ class CartController extends Controller
 	                            ->join('colors', 'product_details.color_id', '=', 'colors.id')
 	                            ->join('sizes', 'product_details.size_id', '=', 'sizes.id')
 	                            ->join('products', 'product_details.product_code', '=', 'products.code')
+	                            ->join('brands', 'brands.id', '=', 'products.brand_id')
 	                            // ->join('images', 'images.product_id', '=', 'products.id')
 	                            ->where('product_details.id', $request['detail_id'])
 	                            ->where('import_products.import_code', $request['receipt_code'])
-	                            ->select('colors.id as color_id','colors.name as color_name','sizes.size','product_details.id','product_details.cpu','product_details.ram','product_details.disk','product_details.vga','product_details.resolution','import_products.origin_price','import_products.sale_price','import_products.quantity','products.name','products.code','products.id as product_id')
+	                            ->select('colors.id as color_id','colors.name as color_name','sizes.size','product_details.id','product_details.cpu','product_details.ram','product_details.disk','product_details.vga','product_details.resolution','import_products.origin_price','import_products.sale_price','import_products.quantity','products.name','products.code','products.id as product_id','brands.name as brand_name')
 	                            // ->where('images.color_id','=','colors.id')
 	                            ->first();
 	        $image= Image::where('product_id',$productDetail->product_id)->where('color_id',$productDetail->color_id)->select('link')->first()->link;
@@ -145,6 +147,7 @@ class CartController extends Controller
 				'qty' => $request['buy_quantity'], 
 				'price' => $productDetail->sale_price, 
 				'options' => [
+					'brand' => $productDetail->brand_name,
 					'size' => $productDetail->size,
 					'color' => $productDetail->color_name,
 					'cpu' => $cpu,
