@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use DB;
+use Illuminate\Support\Facades\View;
+use App\Brand;
+use App\Category;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,12 +18,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {    
-        view()->composer('shop.layouts.master', function($view){
-            $categories = DB::table('categories')->get();
-            $brands = DB::table('brands')->get();
-            $view->with('categories',$categories);
-            $view->with('brands',$brands);
-        });
+        $categories=array();
+        $parents=Category::where('parent_id',null)->get();
+        foreach ($parents as $parent) {
+            $childs=Category::where('parent_id',$parent->id)->get();
+            $item=array();
+            $item['parentSlug']=$parent->slug;
+            foreach ($childs as $child) {
+                $item[$child->name]=$child;
+            }
+            $categories[$parent->name]=$item;
+        }
+        $brands=Brand::all();
+        View::share(['categories'=> $categories,'brands'=> $brands]);
     }
 
     /**

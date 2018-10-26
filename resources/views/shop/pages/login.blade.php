@@ -143,7 +143,7 @@
 						 	 <h3 class="color small">KHÁCH HÀNG MỚI</h3>
 				             <p>Bằng cách tạo tài khoản với cửa hàng chúng tôi, bạn có thể mua hàng nhanh hơn, lưu trữ nhiều địa chỉ giao hàng, xem và theo dõi đơn hàng của bạn trong tài khoản</p>
 				            <br>
-				            <button class="btn btn--ys btn--xl" onclick="location.href='{{ asset('shop/signupShop') }}';"><span class="icon icon-person_add"></span>Tạo một tài khoản</button>
+				            <a class="btn btn--ys btn--xl" href="{{ asset('register') }}"><span class="icon icon-person_add"></span>Tạo một tài khoản</a>
 						 </div>
 					</section>
 					<div class="divider divider--md visible-sm visible-xs"></div>
@@ -153,27 +153,35 @@
 							<p>
 								Nếu bạn có tài khoản với chúng tôi, vui lòng đăng nhập.
 							</p>
-				              <form action="#" id="form-returning">
+				              <form action="{{ route('login') }}" method="post" id="form-returning">
+				              	@csrf
 				                <div class="form-group">
-				                  <label for="email">Email <sup>*</sup></label>
-				                  <input type="email" class="form-control" id="email">
+				                  	<label for="email">Email <sup>*</sup></label>
+				                  	<input type="email" id="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+				                  	@if ($errors->has('email'))
+						                <span class="invalid-feedback">
+						                    <strong>{{ $errors->first('email') }}</strong>
+						                </span>
+						            @endif
 				                </div>
 				                <div class="form-group">
-				                  <label for="password">Mật khẩu <sup>*</sup></label>
-				                  <input type="password" class="form-control" id="password">
+				                  	<label for="password">Mật khẩu <sup>*</sup></label>
+				                  	<input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required >
+				                  	@if ($errors->has('password'))
+						                <span class="invalid-feedback">
+						                    <strong>{{ $errors->first('password') }}</strong>
+						                </span>
+						            @endif
 				                </div>
 				                <div class="row">
 				                	<div class="col-xs-12 col-sm-6 col-md-6">
-				                		<button type="submit" class="btn btn--ys btn-top btn--xl" onclick="document.getElementById('form-returning').submit();"><span class="icon icon-vpn_key"></span>ĐĂNG NHẬP</button>			               			
+				                		<button type="submit" class="btn btn--ys btn-top btn--xl" ><span class="icon icon-vpn_key"></span>ĐĂNG NHẬP</button>			               			
 				                	</div>
 				                	<div class="divider divider--md visible-xs"></div>
 				                	<div class="col-xs-12 col-sm-6 col-md-6">
 				                		<div class="pull-right note btn-top">* Bắt buộc</div>
 				                	</div>
-				                </div>			               			                
-				                <p class="btn-top">
-		               				<a class="link-color" href="#">Quên mật khẩu?</a>
-		               			</p>
+				                </div>	
 				              </form>
 						</div>
 					</section>

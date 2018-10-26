@@ -9,12 +9,13 @@
 	@if (isset($categories))
 	<li class="dropdown dropdown-mega-menu dropdown-two-col">
 		<span class="dropdown-toggle extra-arrow"></span>
-		<a href="about.html" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">DANH MỤC</span></a>
+		<a class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">DANH MỤC</span></a>
 		<ul class="dropdown-menu multicolumn two-col" role="menu">
 			@foreach ($categories  as $key => $category)
-				<h3 class="parent_category"><a href="" data-id="{{$category[key($category)]->parent_id}}" title="">{{$key}}</a></h3>
+				<h3 class="parent_category"><a href="{{ asset('shop/category/') }}/{{$category['parentSlug']}}"title="">{{$key}}</a></h3>
 				@foreach ($category as $key2 => $child)
-					<li><a href="#" data-id="{{$child->id}}">{{$key2}}</a></li>
+					@continue($key2=='parentSlug')
+					<li><a href="{{ asset('shop/category/') }}/{{$child->slug}}" data-id="{{$child->id}}">{{$key2}}</a></li>
 				@endforeach
 				<div style="clear: both;"></div>
 			@endforeach
@@ -25,10 +26,10 @@
 	@if (isset($brands))
 	<li class="dropdown dropdown-mega-menu dropdown-two-col">
 		<span class="dropdown-toggle extra-arrow"></span>
-		<a href="about.html" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">HÃNG</span></a>
+		<a class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">NHÃN HIỆU</span></a>
 		<ul class="dropdown-menu multicolumn two-col" role="menu">
 			@foreach ($brands  as $brand)
-				<li><a href="#" data-id="{{$brand->id}}">{{$brand->name}}</a></li>
+				<li><a href="{{ asset('shop/brand/') }}/{{$brand->slug}}" data-id="{{$brand->id}}">{{$brand->name}}</a></li>
 			@endforeach
 		</ul>
 	</li>
@@ -40,9 +41,5 @@
 	<li class="dropdown dropdown-mega-menu dropdown-two-col">
 		<span class="dropdown-toggle extra-arrow"></span>
 		<a href="{{ asset('shop/about') }}" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">LIÊN HỆ</span></a>
-	</li>											
-	<li class="dropdown dropdown-mega-menu">
-		<span class="dropdown-toggle extra-arrow"></span>
-		<a href="{{ asset('shop/listing') }}" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">SẢN PHẨM<span class="badge badge--menu badge--color">SALE</span></span></a>
-	</li>
+	</li>		
 </ul>

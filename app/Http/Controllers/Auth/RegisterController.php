@@ -28,8 +28,12 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/shop';
 
+    public function showRegistrationForm()
+    {
+        return view('shop.pages.signup');
+    }
     /**
      * Create a new controller instance.
      *

@@ -144,4 +144,37 @@ $(document).ready(function () {
 		})
 	}
 	showCart();
+
+	function cartDestroy() {
+		$.ajax({
+			type: 'post',
+			url: asset+'shop/card/destroy',
+
+			success: function (response) {
+				showCart();
+			},
+			error: function (error) {
+			}
+		})
+	}
+	$('#btn-pay').on('click',function (e) {
+		e.preventDefault();
+		cartDestroy();
+		swal({
+		  title: "Cảm ơn quý khách!",
+		  text: "Chúng tôi sẽ sớm liên hệ với bạn để xác nhận đơn hàng",
+		  icon: "success",
+		  button: "Tiếp tục mua hàng",
+		  // dangerMode: true,
+		})
+		.then((willDelete) => {
+		  window.location = asset+'shop';
+		});
+     //    setTimeout(function() {
+	    //     window.location = asset+'/shop';
+	    // }, 3000);
+	})
+	$('#cart-destroy-btn').on('click',function () {
+		cartDestroy();
+	})
 })
