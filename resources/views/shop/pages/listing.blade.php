@@ -124,7 +124,6 @@
             <ol class="breadcrumb breadcrumb--ys pull-left">
                <li class="home-link"><a href="{{ asset('shop') }}" class="icon icon-home"></a></li>
                <li><a href="#">Sản Phẩm</a></li>
-               <li class="active">Laptop</li>
             </ol>
          </div>
       </div>
@@ -161,114 +160,29 @@
                      </div>
                      <a href="#" class="icon icon-arrow-down active"></a><a href="#" class="icon icon-arrow-up"></a> 
                   </div>
-                  <!-- shopping by block -->
-                  <div class="collapse-block open">
-                     <h4 class="collapse-block__title">MUA HÀNG BỞI:</h4>
-                     <div class="collapse-block__content">
-                        <ul class="filter-list">
-                           <li> Màu: <span>Trắng</span><a href="#" class="icon icon-clear icon-to-right"></a> </li>
-                           <li> Kích Cỡ: <span>15,6 inch</span><a href="#" class="icon icon-clear icon-to-right"></a> </li>
-                        </ul>
-                        <a class="btn btn--ys btn--sm btn--light">Xoá tất cả</a> 
-                     </div>
-                  </div>
-                  <!-- /shopping by block --> 
-                  <!-- category block -->
-                  <div class="collapse-block open">
-                     <h4 class="collapse-block__title ">TOP</h4>
-                     <div class="collapse-block__content">
-                        <ul class="expander-list">
-                           <li class="active">
-                              <a href="#">Xếp hạng</a><span class="expander"></span>
-                              <ul>
-                                 <li class="active"><a href="#">Laptop</a></li>
-                                 <li><a href="#">Camera</a></li>
-                              </ul>
-                           </li>
-                           <li>
-                              <a href="#">Màn Hình</a><span class="expander"></span>
-                              <ul>
-                                 <li><a href="#">11 inch</a></li>
-                                 <li><a href="#">12,5 inch</a></li>
-                                 <li><a href="#">13,3 inch</a></li>
-                                 <li><a href="#">15,6 inch</a></li>
-                                 <li><a href="#">17,3 inch</a></li>
-                              </ul>
-                           </li>
-                           <li>
-                              <a href="#">RAM</a><span class="expander"></span>
-                              <ul>
-                                 <li><a href="#">1GB</a></li>
-                                 <li><a href="#">2GB</a></li>
-                                 <li><a href="#">4GB</a></li>
-                                 <li><a href="#">8GB</a></li>
-                                 <li><a href="#">16GB</a></li>
-                              </ul>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-                  <!-- /category block --> 
-                  <!-- price slider block -->
-                  <div class="collapse-block open">
-                     <h4 class="collapse-block__title">Giá</h4>
-                     <div class="collapse-block__content">
-                        <div id="priceSlider" class="price-slider"></div>
-                        <form action="#">
-                           <div class="price-input">
-                              <label>Từ:</label>
-                              <input type="text" id="priceMin" />
-                           </div>
-                           <div class="price-input-divider">-</div>
-                           <div class="price-input">
-                              <label>Đến:</label>
-                              <input type="text" id="priceMax" />
-                           </div>
-                           <div class="price-input">
-                              <button type="submit" class="btn btn--ys btn--md">Lọc</button>
-                           </div>
-                        </form>
-                     </div>
-                  </div>
-                  <!-- /price slider block --> 
-                  <!-- size block -->
-                  <div class="collapse-block open">
-                     <h4 class="collapse-block__title">Kích cỡ</h4>
-                     <div class="collapse-block__content">
-                        <ul class="options-swatch options-swatch--size options-swatch--lg">
-                           <li><a href="#">XS</a></li>
-                           <li><a href="#">S</a></li>
-                           <li><a href="#">M</a></li>
-                           <li><a href="#">L</a></li>
-                           <li><a href="#">XL</a></li>
-                           <li><a href="#">2XL</a></li>
-                           <li><a href="#">3XL</a></li>
-                        </ul>
-                     </div>
-                  </div>
-                  <!-- /size block --> 
-                  <!-- color block -->
-                  <div class="collapse-block open">
-                     <h4 class="collapse-block__title">Màu Sắc</h4>
-                     <div class="collapse-block__content">
-                        <ul class="options-swatch options-swatch--color options-swatch--lg">
-                           <li><a href="#"><span class="swatch-label color-black"></span></a></li>
-                           <li><a href="#"><span class="swatch-label color-grey"></span></a></li>
-                           <li><a href="#"><span class="swatch-label color-light-grey"></span></a></li>
-                           <li><a href="#"><span class="swatch-label color-blue"></span></a></li>
-                           <li><a href="#"><span class="swatch-label color-dark-turquoise "></span></a></li>
-                        </ul>
-                     </div>
-                  </div>
-                  <!-- /color block --> 
                   <!-- brands block -->
-                  <div class="collapse-block">
-                     <h4 class="collapse-block__title">CAMERA</h4>
+                  @if (isset($categories))
+                     @foreach ($categories  as $key => $category)
+                     <div class="collapse-block open">
+                        <h4 class="collapse-block__title">{{$key}}</h4>
+                        <div class="collapse-block__content">
+                           <ul class="simple-list">
+                           @foreach ($category as $key2 => $child)
+                              @continue($key2=='parentSlug')
+                              <li><a href="{{ asset('shop/category/') }}/{{$child->slug}}">{{$key2}}</a></li>
+                           @endforeach
+                           </ul>
+                        </div>
+                     </div>
+                     @endforeach
+                  @endif
+                  <div class="collapse-block open">
+                     <h4 class="collapse-block__title">Nhãn hiệu</h4>
                      <div class="collapse-block__content">
                         <ul class="simple-list">
-                           <li><a href="#">Có Dây </a></li>
-                           <li><a href="#">Không Dây</a></li>
-                           <li><a href="#">360</a></li>
+                           @foreach ($brands  as $brand)
+                              <li><a href="{{ asset('shop/brand/') }}/{{$brand->slug}}">{{$brand->name}}</a></li>
+                           @endforeach
                         </ul>
                      </div>
                   </div>
@@ -304,161 +218,69 @@
                            <a href="#" class="sort-direction icon icon-arrow_back"></a> 
                         </div>
                      </div>
-                     <div class="pull-right">
-                        <div class="filters-row__items hidden-sm hidden-xs">28 Item(s)</div>
-                        <div class="filters-row__select hidden-sm hidden-xs">
-                           <label>Hiển Thị: </label>
-                           <div class="select-wrapper">
-                              <select class="select--ys show-qty">
-                                 <option>25</option>
-                                 <option>50</option>
-                                 <option>100</option>
-                              </select>
-                           </div>
-                           <a href="#" class="icon icon-arrow-down active"></a><a href="#" class="icon icon-arrow-up"></a> 
-                        </div>
-                        <div class="filters-row__pagination">
-                           <ul class="pagination">
-                              <li class="active"><a href="#">1</a></li>
-                              <li><a href="#">2</a></li>
-                              <li><a href="#">3</a></li>
-                              <li><a href="#"><span class="icon icon-chevron_right"></span></a></li>
-                           </ul>
-                        </div>
-                     </div>
                   </div>
                   <!-- /filters row -->
                   <div class="product-listing row">
-                     <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4 col-xl-one-fifth">
-                        <!-- product -->
-                        <div class="product product--zoom">
-                           <div class="product__inside">
-                              <!-- product image -->
-                              <div class="product__inside__image">
-                                 <!-- product image carousel -->
-                                 <div class="product__inside__carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox">
-                                       <div class="item active"> <a href="product.html"><img src="images/custom/layout11/products/product-03.jpg" alt=""></a> </div>
-                                       <div class="item"> <a href="product.html"><img src="images/custom/layout11/products/product-03.jpg" alt=""></a> </div>
-                                       <div class="item"> <a href="product.html"><img src="images/custom/layout11/products/product-03.jpg" alt=""></a> </div>
+                     @if (isset($products))
+                        @foreach ($products as $product)
+                           <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4 col-xl-one-fifth">
+                              <!-- product -->
+                              <div class="product product--zoom">
+                                 <div class="product__inside">
+                                    <!-- product image -->
+                                    <div class="product__inside__image">
+                                       @php
+                                          $src=$product->link;
+                                          $src=str_replace('public',asset('storage'),$src);
+                                       @endphp
+                                       <a href="{{ asset('shop/productShop/') }}/{{$product->slug}}"> <img src="{{$src}}" alt=""> </a> 
+                                       <!-- quick-view --> 
+                                       <a href="{{ asset('shop/productShop/') }}/{{$product->slug}}" class="quick-view"><b><span class="icon icon-visibility"></span> Xem</b> </a> 
+                                       <!-- /quick-view --> 
                                     </div>
-                                    <!-- Controls --> 
-                                    <a class="carousel-control next"></a> <a class="carousel-control prev"></a> 
-                                 </div>
-                                 <!-- /product image carousel --> 
-                                 <!-- quick-view --> 
-                                 <a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Xem Nhanh</b> </a> 
-                                 <!-- /quick-view --> 
-                                 <!-- countdown_box -->
-                                 <div class="countdown_box">
-                                    <div class="countdown_inner">
-                                       <div id="countdown1"></div>
+                                    <!-- /product image --> 
+                                    <!-- product name -->
+                                    <div class="product__inside__name">
+                                       <h2><a href="{{ asset('shop/productShop/') }}/{{$product->slug}}">{{$product->name}}</a></h2>
+                                    </div>
+                                    <!-- /product name -->                 
+                                    <!-- product description --> 
+                                    <!-- visible only in row-view mode -->
+                                    {{-- <div class="product__inside__description row-mode-visible"> Chi Tiết Sản Phẩm</div> --}}
+                                    <!-- /product description -->                 <!-- product price -->
+                                    <div class="product__inside__price price-box"><span class="product_price">{{$product->sale_price}}</span><br><span class="price-box__old product_price">{{$product->origin_price}}</span></div>
+                                    <!-- /product price --> 
+                                    <!-- product review --> 
+                                    <!-- visible only in row-view mode -->
+                                    <div class="product__inside__review row-mode-visible">
+                                       <div class="rating row-mode-visible"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+                                       <a href="#">1 Đánh giá</a> <a href="#">Thêm nhận xét của bạn</a> 
+                                    </div>
+                                    <!-- /product review --> 
+                                    <div class="product__inside__hover">
+                                       <!-- product info -->
+                                       <div class="product__inside__info">
+                                          <div class="product__inside__info__btns">
+                                             <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
+                                             <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
+                                             <a href="{{ asset('shop/productShop/') }}/{{$product->slug}}" data-toggle="modal" data-target="#quickViewModal" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem thêm</a> 
+                                          </div>
+                                          <ul class="product__inside__info__link hidden-sm">
+                                             <li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào danh sách yêu thích</span></a></li>
+                                             <li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
+                                          </ul>
+                                       </div>
+                                       <!-- /product info --> 
+                                       <!-- product rating -->
+                                       <div class="rating row-mode-hide"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+                                       <!-- /product rating --> 
                                     </div>
                                  </div>
-                                 <!-- /countdown_box --> 
                               </div>
-                              <!-- /product image --> 
-                              <!-- label news -->
-                              <div class="product__label product__label--right product__label--new"> <span>Mới</span> </div>
-                              <!-- /label news --> 
-                              <!-- label sale -->
-                              <div class="product__label product__label--left product__label--sale"> <span>Giảm Giá<br>
-                                 -20%</span> 
-                              </div>
-                              <!-- /label sale --> 
-                              <!-- product name -->
-                              <div class="product__inside__name">
-                                 <h2><a href="product.html">Tên Sản Phẩm</a></h2>
-                              </div>
-                              <!-- /product name --> 
-                              <!-- product description --> 
-                              <!-- visible only in row-view mode -->
-                              <div class="product__inside__description row-mode-visible"> Chi Tiết Sản Phẩm</div>
-                              <!-- /product description --> 
-                              <!-- product price -->
-                              <div class="product__inside__price price-box">1.000.000 VNĐ<br><span class="price-box__old">1.500.000 VNĐ</span></div>
-                              <!-- /product price --> 
-                              <!-- product review --> 
-                              <!-- visible only in row-view mode -->
-                              <div class="product__inside__review row-mode-visible">
-                                 <div class="rating row-mode-visible"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-                                 <a href="#">1 Đánh giá</a> <a href="#">Thêm đánh giá của bạn</a> 
-                              </div>
-                              <!-- /product review --> 
-                              <div class="product__inside__hover">
-                                 <!-- product info -->
-                                 <div class="product__inside__info">
-                                    <div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
-                                       <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-                                       <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-                                       <a href="#" data-toggle="modal" data-target="#quickViewModal" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem nhanh</a> 
-                                    </div>
-                                    <ul class="product__inside__info__link hidden-sm">
-                                       <li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào yêu thích</span></a></li>
-                                       <li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
-                                    </ul>
-                                 </div>
-                                 <!-- /product info --> 
-                                 <!-- product rating -->
-                                 <div class="rating row-mode-hide"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-                                 <!-- /product rating --> 
-                              </div>
+                              <!-- /product --> 
                            </div>
-                        </div>
-                        <!-- /product --> 
-                     </div>
-                     <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4 col-xl-one-fifth">
-                        <!-- product -->
-                        <div class="product product--zoom">
-                           <div class="product__inside">
-                              <!-- product image -->
-                              <div class="product__inside__image">
-                                 <a href="product.html"> <img src="images/custom/layout11/products/product-01.jpg" alt=""> </a> 
-                                 <!-- quick-view --> 
-                                 <a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Xem nhanh</b> </a> 
-                                 <!-- /quick-view --> 
-                              </div>
-                              <!-- /product image --> 
-                              <!-- product name -->
-                              <div class="product__inside__name">
-                                 <h2><a href="product.html">Tên sản phẩm</a></h2>
-                              </div>
-                              <!-- /product name -->                 
-                              <!-- product description --> 
-                              <!-- visible only in row-view mode -->
-                              <div class="product__inside__description row-mode-visible"> Chi Tiết Sản Phẩm</div>
-                              <!-- /product description -->                 <!-- product price -->
-                              <div class="product__inside__price price-box">1.000.000 VNĐ</div>
-                              <!-- /product price --> 
-                              <!-- product review --> 
-                              <!-- visible only in row-view mode -->
-                              <div class="product__inside__review row-mode-visible">
-                                 <div class="rating row-mode-visible"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-                                 <a href="#">1 Đánh giá</a> <a href="#">Thêm nhận xét của bạn</a> 
-                              </div>
-                              <!-- /product review --> 
-                              <div class="product__inside__hover">
-                                 <!-- product info -->
-                                 <div class="product__inside__info">
-                                    <div class="product__inside__info__btns"> <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Thêm vào giỏ hàng</a>
-                                       <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-                                       <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-                                       <a href="#" data-toggle="modal" data-target="#quickViewModal" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Xem nhanh</a> 
-                                    </div>
-                                    <ul class="product__inside__info__link hidden-sm">
-                                       <li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Thêm vào danh sách yêu thích</span></a></li>
-                                       <li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Thêm vào so sánh</span></a></li>
-                                    </ul>
-                                 </div>
-                                 <!-- /product info --> 
-                                 <!-- product rating -->
-                                 <div class="rating row-mode-hide"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-                                 <!-- /product rating --> 
-                              </div>
-                           </div>
-                        </div>
-                        <!-- /product --> 
-                     </div>
+                        @endforeach
+                     @endif
                   </div>
                   <!-- filters row -->
                   <div class="filters-row">
@@ -467,39 +289,6 @@
                               <a href="#" class="btn btn--ys slide-column-open visible-xs visible-sm hidden-xl hidden-lg hidden-md">Lọc</a> 
                            <a class="filters-row__view active link-grid-view btn-img btn-img-view_module"><span></span></a> 
                            <a class="filters-row__view link-row-view btn-img btn-img-view_list"><span></span></a> 
-                        </div>
-                        <div class="filters-row__select hidden-sm hidden-xs">
-                           <label>Sắp xếp bởi: </label>
-                           <div class="select-wrapper">
-                              <select class="select--ys sort-position">
-                                 <option>Tên</option>
-                                 <option>Giá</option>
-                                 <option>Đánh Giá</option>
-                              </select>
-                           </div>
-                           <a href="#" class="sort-direction icon icon-arrow_back"></a> 
-                        </div>
-                     </div>
-                     <div class="pull-right">
-                        <div class="filters-row__items hidden-sm hidden-xs">28 Item(s)</div>
-                        <div class="filters-row__select hidden-sm hidden-xs">
-                           <label>Hiển Thị: </label>
-                           <div class="select-wrapper">
-                              <select class="select--ys show-qty">
-                                 <option>25</option>
-                                 <option>50</option>
-                                 <option>100</option>
-                              </select>
-                           </div>
-                           <a href="#" class="icon icon-arrow-down active"></a><a href="#" class="icon icon-arrow-up"></a> 
-                        </div>
-                        <div class="filters-row__pagination">
-                           <ul class="pagination">
-                              <li class="active"><a href="#">1</a></li>
-                              <li><a href="#">2</a></li>
-                              <li><a href="#">3</a></li>
-                              <li><a href="#"><span class="icon icon-chevron_right"></span></a></li>
-                           </ul>
                         </div>
                      </div>
                   </div>
@@ -603,6 +392,14 @@
       <script src="external/imagesloaded/imagesloaded.pkgd.min.js"></script>
       <script src="external/colorbox/jquery.colorbox-min.js"></script> 
       <!-- Custom --> 
-      <script src="js/custom.js"></script>      
+      <script src="js/custom.js"></script>     
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>              
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
+      <script src="{{ asset('js/autoNumeric-min.js') }}"></script>
+      <script type="text/javascript">
+         var asset='{{ asset('/') }}';
+      </script>
+      <script src="{{ asset('shop_asset/') }}/ajax/ajax-product.js"></script>  
    </body>
 </html>

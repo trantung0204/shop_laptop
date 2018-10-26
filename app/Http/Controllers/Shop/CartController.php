@@ -184,4 +184,8 @@ class CartController extends Controller
     {
     	Cart::update($rowId, $qty);
     }
+    public function cartDestroy()
+    {
+    	Cart::destroy();;
+    }
 }

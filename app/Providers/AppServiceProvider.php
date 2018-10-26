@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
         foreach ($parents as $parent) {
             $childs=Category::where('parent_id',$parent->id)->get();
             $item=array();
+            $item['parentSlug']=$parent->slug;
             foreach ($childs as $child) {
                 $item[$child->name]=$child;
             }

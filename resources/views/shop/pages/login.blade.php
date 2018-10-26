@@ -143,7 +143,7 @@
 						 	 <h3 class="color small">KHÁCH HÀNG MỚI</h3>
 				             <p>Bằng cách tạo tài khoản với cửa hàng chúng tôi, bạn có thể mua hàng nhanh hơn, lưu trữ nhiều địa chỉ giao hàng, xem và theo dõi đơn hàng của bạn trong tài khoản</p>
 				            <br>
-				            <button class="btn btn--ys btn--xl" onclick="location.href='{{ asset('register') }}';"><span class="icon icon-person_add"></span>Tạo một tài khoản</button>
+				            <a class="btn btn--ys btn--xl" href="{{ asset('register') }}"><span class="icon icon-person_add"></span>Tạo một tài khoản</a>
 						 </div>
 					</section>
 					<div class="divider divider--md visible-sm visible-xs"></div>

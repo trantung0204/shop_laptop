@@ -11,6 +11,7 @@
 	<base href="{{asset('')}}shop_asset/">
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
 	<!-- External Plugins CSS -->
 	<link rel="stylesheet" href="external/slick/slick.css">
 	<link rel="stylesheet" href="external/slick/slick-theme.css">
@@ -172,37 +173,40 @@
 										<span class="icon icon-create"></span>Edit
 									</a>
 									<div class="form-group">
-										<label for="checkoutFormFirstName">Tên<sup>*</sup></label>
-										<input type="text" class="form-control" id="checkoutFormFirstName">
-									</div>
-									<div class="form-group">
-										<label for="checkoutFormLastName">Họ<sup>*</sup></label>
-										<input type="text" class="form-control" id="checkoutFormLastName">
+										<label for="checkoutFormFirstName">Họ Tên<sup>*</sup></label>
+										<input type="text" class="form-control" id="checkoutFormFirstName"
+											@if (Auth::check())
+												value="{{Auth::user()->name}}" 
+											@endif
+										>
 									</div>
 									<div class="form-group">
 										<label for="checkoutFormEmailAddress">Email<sup>*</sup></label>
-										<input type="text" class="form-control" id="checkoutFormEmailAddress">
+										<input type="text" class="form-control" id="checkoutFormEmailAddress"
+											@if (Auth::check())
+												value="{{Auth::user()->email}}" 
+											@endif
+										>
 									</div>
 									<div class="form-group">
-										<label for="checkoutFormAddress1">Địa chỉ 1<sup>*</sup></label>
-										<input type="text" class="form-control" id="checkoutFormAddress1">
+										<label for="checkoutFormAddress1">Địa chỉ<sup>*</sup></label>
+										<input type="text" class="form-control" id="checkoutFormAddress1"
+											@if (Auth::check())
+												value="{{Auth::user()->address}}" 
+											@endif
+										>
 									</div>
 									<div class="form-group">
-										<label for="checkoutFormAddress2">Địa chỉ 2</label>
-										<input type="text" class="form-control" id="checkoutFormAddress2">
+										<label for="checkoutFormTelephone">Số điện thoại<sup>*</sup></label>
+										<input type="text" class="form-control" id="checkoutFormTelephone"
+											@if (Auth::check())
+												value="{{Auth::user()->mobile}}" 
+											@endif
+										>
 									</div>
 									<div class="form-group">
-										<label for="checkoutFormCity">Thành Phố<sup>*</sup></label>
-										<input type="text" class="form-control" id="checkoutFormCity">
-									</div>
-									<div class="form-group">
-										<label  for="checkoutFormState">Quận/Huyện<sup>*</sup></label>
-										<select  id="checkoutFormState" class="form-control selectpicker "  data-style="select--ys"  data-width="100%">
-										</select>
-									</div>
-									<div class="form-group">
-										<label for="checkoutFormTelephone">SĐT<sup>*</sup></label>
-										<input type="text" class="form-control" id="checkoutFormTelephone">
+										<label for="checkoutFormAddress1">Ghi chú</label>
+										<textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
 									</div>
 									{{-- <span class="note pull-right">* Trường bắt buộc</span> --}}
 									<p class="btn-top">
@@ -313,7 +317,7 @@
 												</tfoot>
 											</table>
 											<p class="clearfix text-right">
-												<a href="#" class="btn btn--ys btn--xl">THANH TOÁN<span class="icon icon--flippedX icon-reply"></span></a>
+												<a id="btn-pay" class="btn btn--ys btn--xl">THANH TOÁN<span class="icon icon--flippedX icon-reply"></span></a>
 											</p>
 										</div>
 									</div>
@@ -360,6 +364,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>              
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
 <script src="{{ asset('js/autoNumeric-min.js') }}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
  var asset='{{ asset('/') }}';
 </script>

@@ -26,6 +26,9 @@
    .cart__bottom .cart__total{
       margin-right: 20px;
    }
+   #cart-destroy-btn{
+      position: absolute;
+   }
 </style>
 <div class="cart link-inline">
    <div class="dropdown text-right">
@@ -41,6 +44,9 @@
 
             </ul>
             <div class="cart__bottom">
+               <div id="cart-destroy-btn">
+                  <button type="button" class="btn btn--ys">Xoá giỏ hàng</button>
+               </div>
                <div class="cart__total">Tổng giỏ hàng: <span id="cart-list-total"></span></div>
                <a href="{{ asset('shop/checkout') }}" class="btn btn--ys btn-checkout">THANH TOÁN <span class="icon icon--flippedX icon-reply"></span></a>
                {{-- <a href="#" class="btn btn--ys"><span class="icon icon-shopping_basket"></span> XEM GIỎ HÀNG</a> --}}

@@ -18,7 +18,8 @@
 
 Route::prefix('shop')->group(function(){
 	Route::get('/', 'Shop\ShopController@index')->name('shop.index');
-	Route::get('listing/','Shop\ShopController@listing')->name('shop.listing');
+	Route::get('brand/{slug}','Shop\ShopController@listingBrand')->name('shop.listingBrand');
+	Route::get('category/{slug}','Shop\ShopController@listingCategory')->name('shop.listingCategory');
 	Route::get('productShop/{slug}','Shop\ShopController@productShop')->name('shop.productShop');
 	// Route::get('loginShop','Shop\ShopController@loginShop')->name('shop.loginShop');
 	// Route::get('signupShop','Shop\ShopController@signupShop')->name('shop.signupShop');
@@ -31,6 +32,7 @@ Route::prefix('shop')->group(function(){
 	Route::get('card/showCart','Shop\CartController@showCart')->name('cart.showCart');
 	Route::get('card/delItem/{rowId}','Shop\CartController@delItem')->name('cart.delItem');
 	Route::get('card/editItem/{rowId}/{qty}','Shop\CartController@editItem')->name('cart.editItem');
+	Route::post('card/destroy','Shop\CartController@cartDestroy')->name('cart.cartDestroy');
 });
 
 Route::get('/', function(){
